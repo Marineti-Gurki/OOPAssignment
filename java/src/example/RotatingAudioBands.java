@@ -8,20 +8,30 @@ public class RotatingAudioBands extends Visual {
 
     public void settings()
     {
-        size(800, 800, P3D);
+        size(1080, 720, P3D);
+        // fullScreen(P3D);
         println("CWD: " + System.getProperty("user.dir"));
         //fullScreen(P3D, SPAN);
     }
 
     public void keyPressed()
     {
-        if (key == ' ')
+        if (keyCode == ' ')
         {
-            getAudioPlayer().cue(0);
-            getAudioPlayer().play();
-            
+            if(getAudioPlayer().isPlaying())
+            {
+                getAudioPlayer().pause();
+            }
+            else
+            {
+                getAudioPlayer().play();
+            }
         }
- 
+        if (keyCode == ENTER)
+        {
+            getAudioPlayer().rewind();
+            getAudioPlayer().play();
+        }
     }
 
     public void setup()
@@ -30,13 +40,15 @@ public class RotatingAudioBands extends Visual {
         noCursor();
         
         setFrameSize(256);
-
         startMinim();
-        loadAudio("heroplanet.mp3");
+        loadAudio("DoomsGate.mp3");
+        // loadAudio("DBZ.mp3");
         getAudioPlayer().play();
+        getAudioPlayer().setGain(-5); 
         //startListening(); 
         
     }
+
 
     float radius = 200;
 
@@ -55,35 +67,54 @@ public class RotatingAudioBands extends Visual {
         {
             e.printStackTrace();
         }
+        
         calculateFrequencyBands();
         background(0);
         noFill();
         stroke(255);
         lights();
         stroke(map(getSmoothedAmplitude(), 0, 1, 0, 255), 255, 255);
+        
+        
+        int var = 1;
+        boolean check = false;
+        
         camera(0, -500, 500, 0, 0, 0, 0, 1, 0);
+
+        // camera(0, -500, 500, mouseX*-1, mouseY*-1, 0, 0, 1, 0);
         //translate(0, 0, -250);
-
+        
         rot += getAmplitude() / 8.0f;
-
+        
+        
         rotateY(rot);
         float[] bands = getSmoothedBands();
-        for(int i = 0 ; i < bands.length ; i ++)
+        for(int i = 0 ; i < bands.length; i ++)
         {
             float theta = map(i, 0, bands.length, 0, TWO_PI);
 
             stroke(map(i, 0, bands.length, 0, 255), 255, 255);
-            float x = sin(theta) * radius;
-            float z = cos(theta) * radius;
+            strokeWeight(2);
             float h = bands[i];
+            float x = sin(theta) * (radius);
+            float z = cos(theta) * (radius);
             pushMatrix();
-            translate(x, - h / 2 , z);
-            rotateY(theta);
-            box(50, h, 50);
+            rotateZ(h + i);
+            translate(x, z);
+            
+            // rotateY(theta);
+            // box(50, h, 50);
+            sphere(12.5f + h/50);
             popMatrix();
-        }
 
-    }
+            pushMatrix();
+            strokeWeight(1);
+            sphere(h/2f);
+            popMatrix();
+
+            }
+
+        }
     float angle = 0;
 
 }

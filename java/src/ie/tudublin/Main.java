@@ -1,6 +1,5 @@
 package ie.tudublin;
 
-import example.CubeVisual;
 import example.MyVisual;
 import example.RotatingAudioBands;
 
@@ -12,10 +11,25 @@ public class Main
 		String[] a = {"MAIN"};
         processing.core.PApplet.runSketch( a, new MyVisual());		
 	}
+	// public void Quake()
+	// {
+	// 	String[] a = {"MAIN"};
+    //     processing.core.PApplet.runSketch( a, new Starfield());		
+	// }
+	public void Doom()
+	{
+		String[] a = {"MAIN"};
+        processing.core.PApplet.runSketch( a, new RotatingAudioBands());		
+	}
+	public void PongRave()
+	{
+		String[] a = {"MAIN"};
+        processing.core.PApplet.runSketch( a, new Pongrave());		
+	}
 
 	public static void main(String[] args)
 	{
 		Main main = new Main();
-		main.startUI();			
+		main.PongRave();
 	}
 }

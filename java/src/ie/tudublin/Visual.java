@@ -8,6 +8,7 @@ public abstract class Visual extends PApplet
 {
 	private int frameSize = 512;
 	private int sampleRate = 44100;
+	
 
 	private float[] bands;
 	private float[] smoothedBands;
@@ -15,6 +16,7 @@ public abstract class Visual extends PApplet
 	private Minim minim;
 	private AudioInput ai;
 	private AudioPlayer ap;
+	private AudioSample as;
 	private AudioBuffer ab;
 	private FFT fft;
 
@@ -25,7 +27,9 @@ public abstract class Visual extends PApplet
 	
 	public void startMinim() 
 	{
+		String songpath = dataPath("RuleTheWorld.mp3");
 		minim = new Minim(this);
+		ap = minim.loadFile(songpath);
 
 		fft = new FFT(frameSize, sampleRate);
 
@@ -70,7 +74,8 @@ public abstract class Visual extends PApplet
 			int w = (int) pow(2, i);
 			int end = start + w;
 			float average = 0;
-			for (int j = start; j < end; j++) {
+			for (int j = start; j < end; j++) 
+			{
 				average += fft.getBand(j) * (j + 1);
 			}
 			average /= (float) w;
@@ -79,16 +84,29 @@ public abstract class Visual extends PApplet
 		}
 	}
 
-	public void startListening()
-	{
-		ai = minim.getLineIn(Minim.MONO, width, 44100, 16);
-		ab = ai.left;
-	}
+	// public void startListening()
+	// {
+	// 	ai = minim.getLineIn(Minim.MONO, frameSize, 44100, 16);
+	// 	ab = ai.left;
+	// }
 
 	public void loadAudio(String filename)
 	{
 		ap = minim.loadFile(filename, frameSize);
-		ab = ap.left;
+		ab = ap.mix;
+	}
+
+	public void loadSample(String filename)
+	{
+		as = minim.loadSample(filename, frameSize);
+		// ab = as.left;
+	}
+
+	public AudioSample getAs() {
+		return as;
+	}
+	public void setAs(AudioSample as) {
+		this.as = as;
 	}
 
 	public int getFrameSize() {

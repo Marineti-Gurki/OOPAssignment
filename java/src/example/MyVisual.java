@@ -23,11 +23,11 @@ public class MyVisual extends Visual
         startMinim();
                 
         // Call loadAudio to load an audio file to process 
-        //loadAudio("heroplanet.mp3");   
+        loadAudio("DoomsGate.mp3");   
 
         
         // Call this instead to read audio from the microphone
-        startListening(); 
+        //startListening(); 
         
         wf = new WaveForm(this);
         abv = new AudioBandsVisual(this);
@@ -35,12 +35,34 @@ public class MyVisual extends Visual
 
     public void keyPressed()
     {
-        if (key == ' ')
+        if (keyCode == ' ')
         {
-            getAudioPlayer().cue(0);
-            getAudioPlayer().play();
+            if(getAudioPlayer().isPlaying())
+            {
+                getAudioPlayer().pause();
+            }
+            else
+            {
+                getAudioPlayer().play();
+            }
         }
     }
+    // public void keyPressed() {
+
+    //     if (keyCode == ' ') {
+    //         if (ap.isPlaying()) {
+    //             ap.pause();
+    //         } else {
+    //             //ap.rewind(); rewind disabled here because I didn't like it rewninding everytime I unpaused the track
+    //             ap.play();
+    //         }
+    //     }
+    //     //pressing enter rewinds the track
+    //     if (keyCode == ENTER)
+    //     {
+    //         ap.rewind();
+    //     }
+    // } 
 
     public void draw()
     {
@@ -61,7 +83,5 @@ public class MyVisual extends Visual
         calculateAverageAmplitude();        
         wf.render();
         abv.render();
-
-        get
     }
 }
