@@ -27,7 +27,6 @@ public class Pongrave extends Visual
         noCursor();
         setFrameSize(256);
         startMinim();
-        // dataPath("RuleTheWorld.mp3");
         loadAudio("RuleTheWorld.mp3");
         getAudioPlayer().loop();
         getAudioPlayer().setGain(-8); 

@@ -1,12 +1,16 @@
 package ie.tudublin;
 
+import processing.core.PVector;
+
 public class BG extends Pongrave
 {
     Pongrave Pongrave;
     float rot = 0;
+    PVector size;
 
     public BG(Pongrave pongrave) {
         Pongrave = pongrave;
+        size = new PVector(1000, 1000);
     }
     
     void render()
@@ -34,7 +38,7 @@ public class BG extends Pongrave
             
             Pongrave.stroke(150+h, 50, 100);
             Pongrave.strokeWeight(2);
-            Pongrave.rect(Pongrave.width/2, Pongrave.height/2, 1000, 1000);
+            Pongrave.rect(Pongrave.width/2, Pongrave.height/2, size.x, size.y);
             Pongrave.popMatrix();
         }
     }
