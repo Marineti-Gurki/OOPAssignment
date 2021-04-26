@@ -22,30 +22,7 @@ public class Paddle extends Pongrave
         this.posy = posy;
         this.posx = posx;
         this.padspeed = padspeed;
-        if(padleft)
-        {
-            posx = posx / 2 + 10;
-            if(keyCode == 'W')
-            {
-                control(10);
-            }
-            if(keyCode == 'S')
-            {
-                control(-10);
-            }
-        }
-        else
-        {
-            posx = Pongrave.width - 50;
-            if(keyCode == UP)
-            {
-                padright.control(10);
-            }
-            if(keyCode == DOWN)
-            {
-                padright.control(-10);
-            }
-        }
+
     }
 
     void render()
@@ -65,14 +42,6 @@ public class Paddle extends Pongrave
             Pongrave.box(x, y, h);
             Pongrave.popMatrix();
 
-            Pongrave.pushMatrix();
-            Pongrave.colorMode(HSB);
-            Pongrave.translate(posx, posy);
-            Pongrave.stroke(255, 125, 255, 50);
-            Pongrave.strokeWeight(bigb);
-            Pongrave.fill(PApplet.map(b, 0, Pongrave.getBands().length*20, 0, 255), 255, 255);
-            Pongrave.box(x, y, h);
-            Pongrave.popMatrix();
         }
     }
 

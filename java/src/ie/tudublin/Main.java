@@ -2,7 +2,6 @@ package ie.tudublin;
 
 import example.MyVisual;
 import example.RotatingAudioBands;
-import example.WaveForm;
 
 public class Main
 {	

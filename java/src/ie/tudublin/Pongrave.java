@@ -10,7 +10,9 @@ public class Pongrave extends Visual
     Score scr;
     boolean[] keys = new boolean[1024];
     float[] lerpedBuffer;
+    Menu mn;
 
+    public int check;
     float halfW = width / 2;
     float halfH = height / 2;
 
@@ -23,13 +25,15 @@ public class Pongrave extends Visual
     public void setup()
     {
         colorMode(RGB);
-        noCursor();
+        // noCursor();
         setFrameSize(256);
         startMinim();
         loadAudio("RuleTheWorld.mp3");
         getAudioPlayer().loop();
         getAudioPlayer().setGain(-8); 
         lerpedBuffer = new float[width];
+        check = 0;
+        mn = new Menu(this, 200);
 
         p = new Puck(this, width/2, height/2, random(5, 8), random(5, 8), false);
 
@@ -38,7 +42,6 @@ public class Pongrave extends Visual
         
         bg = new BG(this);
 
-        
         scr = new Score(this, 0, 0);
         p.reset();
         p.speedcontrol();
@@ -58,6 +61,69 @@ public class Pongrave extends Visual
 
         calculateFrequencyBands();
         background(0);
+
+        if(mousePressed == true && mouseX < mn.buttonloc.x + mn.buttonsize.x/2 && mouseX > mn.buttonloc.x - mn.buttonsize.x/2 && mouseY < mn.buttonloc.y + mn.buttonsize.y/2 && mouseY > mn.buttonloc.y - mn.buttonsize.y/2)
+        {
+            check = 1;
+            println("test");
+            p.reset();
+        }
+        if(checkKey('M'))
+        {
+            check = 0;
+            p.reset();
+        }
+
+        println(mouseX);
+
+        switch(check)
+        {
+            case 0:
+                mn.render();
+                mn.button();
+                break;
+            case 1:
+                Pong();
+            break;
+        }
+
+        
+        // bg.render();
+        
+        // bg.renderbars();
+        // p.render();
+        // p.update();
+        // p.edgedetect(scr);
+        // p.paddledetectleft(padleft);
+        // p.paddledetectright(padright);
+
+        // scr.scoredisplayright();
+        // scr.scoredisplayleft();
+        
+        // padright.render();
+        // padright.rightInput();
+        // padright.update();
+        // padleft.render();
+        // padleft.leftInput();
+        // padleft.update();
+    }
+
+    // public void keyReleased()
+    // {
+    //     padright.control(0);
+    //     padleft.control(0);
+    // }
+
+    boolean checkKey(int k) {
+        if (keys.length >= k) {
+            return keys[k] || keys[Character.toUpperCase(k)];
+        }
+        return false;
+    }
+
+    public void Pong()
+    {
+
         bg.render();
         
         bg.renderbars();
@@ -76,19 +142,6 @@ public class Pongrave extends Visual
         padleft.render();
         padleft.leftInput();
         padleft.update();
-    }
-
-    // public void keyReleased()
-    // {
-    //     padright.control(0);
-    //     padleft.control(0);
-    // }
-
-    boolean checkKey(int k) {
-        if (keys.length >= k) {
-            return keys[k] || keys[Character.toUpperCase(k)];
-        }
-        return false;
     }
 
     public void mousePressed() {

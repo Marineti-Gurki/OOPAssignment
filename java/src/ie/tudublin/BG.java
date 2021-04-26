@@ -51,7 +51,6 @@ public class BG extends Pongrave
             Pongrave.strokeWeight(2);
             Pongrave.rect(Pongrave.width/4, halfH, size.x/2, size.y);
             Pongrave.popMatrix();
-            
         }
     }
     void renderbars()
@@ -70,7 +69,6 @@ public class BG extends Pongrave
             Pongrave.rect(0, i * gap, -Pongrave.getSmoothedBands()[i] * 1f, gap); 
             Pongrave.rect(Pongrave.width, i * gap, -Pongrave.getSmoothedBands()[i] * 1f, gap); 
             Pongrave.popMatrix();
-
 
         // cy = this.mv.height / 2;
         // mv.line(i, cy, i, cy + cy * mv.getAudioBuffer().get(i));

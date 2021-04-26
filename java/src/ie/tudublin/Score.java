@@ -31,6 +31,11 @@ public class Score extends Pongrave
         Pongrave.popMatrix();
     }
 
+    void scorereset()
+    {
+        
+    }
+
     public Pongrave getPongrave() {
         return Pongrave;
     }
