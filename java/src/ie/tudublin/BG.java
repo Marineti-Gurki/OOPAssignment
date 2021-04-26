@@ -35,11 +35,21 @@ public class BG extends Pongrave
 
             Pongrave.pushMatrix();
             Pongrave.rectMode(CENTER);
-            
+                        
             Pongrave.stroke(150+h, 50, 100);
             Pongrave.strokeWeight(2);
             Pongrave.rect(Pongrave.width/2, Pongrave.height/2, size.x, size.y);
             Pongrave.popMatrix();
+        }
+    }
+    void renderbars()
+    {
+        float gap = Pongrave.width / (float) Pongrave.getBands().length;
+        Pongrave.noStroke();
+        for(int j = 0 ; j < Pongrave.getBands().length ; j ++)
+        {
+            Pongrave.fill(Pongrave.map(j, 0, Pongrave.getBands().length, 255, 0), 255, 255);
+            Pongrave.rect(j * gap, Pongrave.height, gap,-Pongrave.getSmoothedBands()[j] * 0.6f); 
         }
     }
 }

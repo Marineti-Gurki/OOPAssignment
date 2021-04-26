@@ -59,6 +59,7 @@ public class Pongrave extends Visual
         calculateFrequencyBands();
         background(0);
         bg.render();
+        bg.renderbars();
         
         p.render();
         p.update();

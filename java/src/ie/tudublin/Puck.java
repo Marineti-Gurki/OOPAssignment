@@ -99,10 +99,20 @@ public class Puck extends Pongrave
     }
     void reset()
     {
+        //gives puck random angle and sets puck speed
+        rot = random(-PI/4, PI/4);
         speedx = 10 * cos(rot);
         speedy = 10 * sin(rot);
+        
+        //sets puck to middle
         x = Pongrave.width / 2;
         y = Pongrave.height / 2;
+
+        //randomises puck direction
+        if(random(1) < 0.5)
+        {
+            speedx *= -1;
+        }
     }
 
     void edgedetect(Score scr) 
