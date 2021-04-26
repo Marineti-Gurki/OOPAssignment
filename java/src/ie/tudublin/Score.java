@@ -33,7 +33,8 @@ public class Score extends Pongrave
 
     void scorereset()
     {
-        
+        scrL = 0;
+        scrR = 0;
     }
 
     public Pongrave getPongrave() {
