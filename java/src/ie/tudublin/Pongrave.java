@@ -33,7 +33,7 @@ public class Pongrave extends Visual
         getAudioPlayer().setGain(-8); 
         lerpedBuffer = new float[width];
         check = 0;
-        mn = new Menu(this, 200);
+        mn = new Menu(this, 200, "Pong");
 
         p = new Puck(this, width/2, height/2, random(5, 8), random(5, 8), false);
 
@@ -67,11 +67,11 @@ public class Pongrave extends Visual
             check = 1;
             println("test");
             p.reset();
+            scr.scorereset();
         }
         if(checkKey('M'))
         {
             check = 0;
-            p.reset();
         }
 
         println(mouseX);

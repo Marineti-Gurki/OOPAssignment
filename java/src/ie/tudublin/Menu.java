@@ -8,8 +8,9 @@ public class Menu extends Pongrave
     PVector menubox;
     PVector buttonsize;
     PVector buttonloc;
+    String buttontext;
 
-    public Menu(Pongrave pongrave, int gap) {
+    public Menu(Pongrave pongrave, int gap, String buttontext) {
         Pongrave = pongrave;
         menubox = new PVector(Pongrave.width/4, Pongrave.height/1.5f);
         buttonsize = new PVector(Pongrave.width/4 - 50, Pongrave.height/10);
@@ -43,16 +44,8 @@ public class Menu extends Pongrave
         Pongrave.strokeWeight(5);
         Pongrave.rect(buttonloc.x, buttonloc.y, buttonsize.x, buttonsize.y);
         Pongrave.popMatrix();
-        if(mouseX < buttonloc.x - buttonsize.x/2 && mouseX > buttonloc.x + buttonsize.x/2 && mouseY < buttonloc.y - buttonsize.y/2 && mouseY > buttonloc.y - buttonsize.y/2)
-        {
-            // Pongrave.check++;
-            println("test");
-        }
-        else
-        {
-            Pongrave.check = 0;
-        }
-        
+
+        // Pongrave.text(buttontext, buttonloc.x, buttonloc.y);
     }
 
     // public void mousePressed()
