@@ -39,7 +39,7 @@ public abstract class Visual extends PApplet
 	}
 
 	float log2(float f) {
-		return log(f) / log(2.0f);
+		return log(f) / log(2f);
 	}
 
 	protected void calculateFFT() throws VisualException
@@ -84,11 +84,11 @@ public abstract class Visual extends PApplet
 		}
 	}
 
-	// public void startListening()
-	// {
-	// 	ai = minim.getLineIn(Minim.MONO, frameSize, 44100, 16);
-	// 	ab = ai.left;
-	// }
+	public void startListening()
+	{
+		ai = minim.getLineIn(Minim.MONO, frameSize, 44100, 16);
+		ab = ai.left;
+	}
 
 	public void loadAudio(String filename)
 	{
@@ -100,6 +100,14 @@ public abstract class Visual extends PApplet
 	{
 		as = minim.loadSample(filename, frameSize);
 		// ab = as.left;
+	}
+
+	public AudioBuffer getAb() {
+		return ab;
+	}
+
+	public void setAb(AudioBuffer ab) {
+		this.ab = ab;
 	}
 
 	public AudioSample getAs() {

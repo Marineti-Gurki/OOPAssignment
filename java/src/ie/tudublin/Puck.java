@@ -8,6 +8,7 @@ public class Puck extends Pongrave
     float rot;
     boolean playing;
     float tempxspeed, tempyspeed;
+    float startspeed;
 
     public Puck(Pongrave pongrave, float x, float y, float speedx, float speedy, boolean playing) {
         Pongrave = pongrave;
@@ -17,13 +18,14 @@ public class Puck extends Pongrave
         this.speedy = speedy;
         this.playing = playing;
         rot = random(TWO_PI);
+        startspeed = 5;
     }
 
     void paddledetectleft(Paddle p)
     {
         Pongrave.noStroke();
         Pongrave.fill(255, 0, 0);
-        Pongrave.rectMode(CENTER);
+        // Pongrave.rectMode(CENTER);
 
         /*debug code
         // Pongrave.rect(p.posx, p.posy, p.x, p.y);
@@ -32,17 +34,37 @@ public class Puck extends Pongrave
         // Pongrave.text(p.x, 50, 90);
         // Pongrave.text(p.posx, 50, 120);
         */
-        if(x - 15 < p.posx + p.x/2 && y < p.posy + p.y/1.5 && y > p.posy - p.y/1.5)
+        if(x - 10 < p.posx + p.x/2 && y - 10 < p.posy + p.y/2 && y + 10 > p.posy - p.y/2)
         {
-            speedx *= -1;
+            if(x > p.posx)
+            {
+                Pongrave.loadSample("tabletennis.mp3");
+                float rads = radians(45);
+                float diff = y - (p.posy - p.y/2);
+                float angle = map(diff, 0, p.y, -rads, rads);
+                speedx *= -1.05f;
+                speedy = startspeed * sin(angle);
+                Pongrave.getAs().setGain(-4);
+                Pongrave.getAs().trigger();
+            }
         }
     }
 
     void paddledetectright(Paddle p)
     {
-        if(x + 15 > p.posx + p.x/2 && y < p.posy + p.y/1.5 && y > p.posy - p.y/1.5)
+        if(x + 10 > p.posx - p.x/2 && y - 10 < p.posy + p.y/2 && y + 10 > p.posy - p.y/2)
         {
-            speedx *= -1;
+            if(x < p.posx)
+            {
+                Pongrave.loadSample("tabletennis.mp3");
+                float rads2 = radians(135);
+                float diff = y - (p.posy - p.y/2);
+                float angle = map(diff, 0, p.y, -rads2, rads2);
+                speedx *= -1.05f;
+                speedy = startspeed * sin(angle);
+                Pongrave.getAs().setGain(-4);
+                Pongrave.getAs().trigger();
+            }
         }
     }
 
@@ -101,8 +123,8 @@ public class Puck extends Pongrave
     {
         //gives puck random angle and sets puck speed
         rot = random(-PI/4, PI/4);
-        speedx = 10 * cos(rot);
-        speedy = 10 * sin(rot);
+        speedx = startspeed * cos(rot);
+        speedy = startspeed * sin(rot);
         
         //sets puck to middle
         x = Pongrave.width / 2;
@@ -119,11 +141,15 @@ public class Puck extends Pongrave
     {
         if(y - 12.5 < 0 || y + 12.5 > Pongrave.height)
         {
+            Pongrave.loadSample("tabletennis.mp3");
             speedy *= -1;
+            Pongrave.getAs().setGain(-4);
+            Pongrave.getAs().trigger();
         }
         if(x > Pongrave.width)
         {
             Pongrave.loadSample("buzzer.mp3");
+            Pongrave.getAs().setGain(-8);
             Pongrave.getAs().trigger();
             scr.scrL += 1;
             reset();
@@ -131,6 +157,7 @@ public class Puck extends Pongrave
         if(x < 0)
         {
             Pongrave.loadSample("buzzer.mp3");
+            Pongrave.getAs().setGain(-8);
             Pongrave.getAs().trigger();
             scr.scrR += 1;
             reset();

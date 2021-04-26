@@ -11,8 +11,10 @@ public class Paddle extends Pongrave
     float posx;
     float padspeed;
     float ymovement = 0;
+    boolean playing;
+    float temppadspeed;
 
-    public Paddle(Pongrave pongrave, float x, float y, float h, float posy, float posx, float padspeed, boolean padleft) {
+    public Paddle(Pongrave pongrave, float x, float y, float h, float posy, float posx, float padspeed, boolean padleft, boolean playing) {
         Pongrave = pongrave;
         this.x = x;
         this.y = y;
@@ -48,24 +50,36 @@ public class Paddle extends Pongrave
 
     void render()
     {
-        Pongrave.pushMatrix();
-        Pongrave.colorMode(RGB);
-        Pongrave.translate(posx, posy);
-        Pongrave.noStroke();
-        Pongrave.fill(255, 0, 0);
-        Pongrave.box(x, y, h);
-        Pongrave.popMatrix();
+        Pongrave.calculateFrequencyBands();
+        float[] bands = Pongrave.getSmoothedBands();
+        for(int i = 0 ; i < bands.length; i ++)
+        {
+            float b = bands[i];
+            float bigb = (b/10) - 2;
+            Pongrave.pushMatrix();
+            Pongrave.colorMode(HSB);
+            Pongrave.translate(posx, posy);
+            Pongrave.strokeWeight(bigb);
+            Pongrave.stroke(255, 255, 255, 50);
+            Pongrave.fill(PApplet.map(b, 0, Pongrave.getBands().length*20, 0, 255), 255, 255);
+            Pongrave.box(x, y, h);
+            Pongrave.popMatrix();
 
-        Pongrave.pushMatrix();
-        Pongrave.translate(posx, posy);
-        Pongrave.noStroke();
-        Pongrave.fill(255, 0, 0);
-        Pongrave.box(x, y, h);
-        Pongrave.popMatrix();
+            Pongrave.pushMatrix();
+            Pongrave.colorMode(HSB);
+            Pongrave.translate(posx, posy);
+            Pongrave.stroke(255, 125, 255, 50);
+            Pongrave.strokeWeight(bigb);
+            Pongrave.fill(PApplet.map(b, 0, Pongrave.getBands().length*20, 0, 255), 255, 255);
+            Pongrave.box(x, y, h);
+            Pongrave.popMatrix();
+        }
     }
 
     void leftInput()
     {
+        if(playing == false)
+        {
             if(Pongrave.checkKey('W'))
             {
                 control(10);
@@ -74,9 +88,12 @@ public class Paddle extends Pongrave
             {
                 control(-10);
             }
+        }
     }
     void rightInput()
     {
+        if(playing == false)
+        {
             if(Pongrave.checkKey(PApplet.UP))
             {
                 control(10);
@@ -85,6 +102,7 @@ public class Paddle extends Pongrave
             {
                 control(-10);
             }
+        }
     }
 
     void control(float padspeed)
@@ -98,14 +116,21 @@ public class Paddle extends Pongrave
         posy = posy - ymovement;
         posy = constrain(posy, y/2, Pongrave.height - y/2);
     }
-
-
-
-    // void reset()
-    // {
-
-    // }
-
+    void PlayPause()
+    {
+        println(padspeed);
+        println(temppadspeed);
+        if(playing == false)
+        {
+            temppadspeed = padspeed;
+            padspeed = 0;
+        }
+        if(playing == true)
+        {
+            padspeed = temppadspeed;
+        }
+        
+    }
 
     public Pongrave getPongrave() {
         return Pongrave;

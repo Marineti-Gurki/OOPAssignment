@@ -1,5 +1,6 @@
 package ie.tudublin;
 
+// import processing.core.PApplet;
 import processing.core.PVector;
 
 public class BG extends Pongrave
@@ -11,6 +12,8 @@ public class BG extends Pongrave
     public BG(Pongrave pongrave) {
         Pongrave = pongrave;
         size = new PVector(1000, 1000);
+        halfH = Pongrave.height/2;
+        halfW = Pongrave.width/2;
     }
     
     void render()
@@ -28,28 +31,49 @@ public class BG extends Pongrave
             Pongrave.fill(h, 50, 255, 100);
             Pongrave.stroke(150+h, 50, 100);
             Pongrave.strokeWeight(2);
-            Pongrave.translate(Pongrave.width/2, Pongrave.height/2);
+            Pongrave.translate(halfW, halfH);
             Pongrave.rotateY(rot/4);
             Pongrave.sphere(1000);
             Pongrave.popMatrix();
-
+            
             Pongrave.pushMatrix();
+            Pongrave.hint(DISABLE_OPTIMIZED_STROKE);
             Pongrave.rectMode(CENTER);
-                        
             Pongrave.stroke(150+h, 50, 100);
             Pongrave.strokeWeight(2);
-            Pongrave.rect(Pongrave.width/2, Pongrave.height/2, size.x, size.y);
+            Pongrave.rect(Pongrave.width - Pongrave.width/4, halfH, size.x/2, size.y);
             Pongrave.popMatrix();
+            
+            Pongrave.pushMatrix();
+            // Pongrave.hint(DISABLE_OPTIMIZED_STROKE);
+            Pongrave.rectMode(CENTER);
+            Pongrave.stroke(150+h, 50, 100);
+            Pongrave.strokeWeight(2);
+            Pongrave.rect(Pongrave.width/4, halfH, size.x/2, size.y);
+            Pongrave.popMatrix();
+            
         }
     }
     void renderbars()
     {
-        float gap = Pongrave.width / (float) Pongrave.getBands().length;
-        Pongrave.noStroke();
-        for(int j = 0 ; j < Pongrave.getBands().length ; j ++)
+        // Pongrave.hint(ENABLE_OPTIMIZED_STROKE);
+        Pongrave.colorMode(HSB);
+        Pongrave.calculateFrequencyBands();
+        float[] bands = Pongrave.getSmoothedBands();
+        for(int i = 0 ; i < bands.length; i ++)
         {
-            Pongrave.fill(Pongrave.map(j, 0, Pongrave.getBands().length, 255, 0), 255, 255);
-            Pongrave.rect(j * gap, Pongrave.height, gap,-Pongrave.getSmoothedBands()[j] * 0.6f); 
+            float h = bands[i];
+            Pongrave.pushMatrix();
+            float gap = Pongrave.width / (float) Pongrave.getBands().length;
+            Pongrave.stroke(0, 125, 0);
+            Pongrave.fill(h, 125, 255);
+            Pongrave.rect(0, i * gap, -Pongrave.getSmoothedBands()[i] * 1f, gap); 
+            Pongrave.rect(Pongrave.width, i * gap, -Pongrave.getSmoothedBands()[i] * 1f, gap); 
+            Pongrave.popMatrix();
+
+
+        // cy = this.mv.height / 2;
+        // mv.line(i, cy, i, cy + cy * mv.getAudioBuffer().get(i));
         }
     }
 }

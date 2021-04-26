@@ -2,6 +2,7 @@ package ie.tudublin;
 
 import example.MyVisual;
 import example.RotatingAudioBands;
+import example.WaveForm;
 
 public class Main
 {	
@@ -11,11 +12,11 @@ public class Main
 		String[] a = {"MAIN"};
         processing.core.PApplet.runSketch( a, new MyVisual());		
 	}
-	// public void Quake()
-	// {
-	// 	String[] a = {"MAIN"};
-    //     processing.core.PApplet.runSketch( a, new Starfield());		
-	// }
+	public void Quake()
+	{
+		String[] a = {"MAIN"};
+        processing.core.PApplet.runSketch( a, new MyVisual());		
+	}
 	public void Doom()
 	{
 		String[] a = {"MAIN"};
@@ -32,4 +33,9 @@ public class Main
 		Main main = new Main();
 		main.PongRave();
 	}
+	// public static void main(String[] args)
+	// {
+	// 	Main main = new Main();
+	// 	main.Quake();
+	// }
 }

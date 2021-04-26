@@ -9,6 +9,7 @@ public class Pongrave extends Visual
     BG bg;
     Score scr;
     boolean[] keys = new boolean[1024];
+    float[] lerpedBuffer;
 
     float halfW = width / 2;
     float halfH = height / 2;
@@ -21,8 +22,6 @@ public class Pongrave extends Visual
  
     public void setup()
     {
-        
-
         colorMode(RGB);
         noCursor();
         setFrameSize(256);
@@ -30,11 +29,12 @@ public class Pongrave extends Visual
         loadAudio("RuleTheWorld.mp3");
         getAudioPlayer().loop();
         getAudioPlayer().setGain(-8); 
+        lerpedBuffer = new float[width];
 
         p = new Puck(this, width/2, height/2, random(5, 8), random(5, 8), false);
 
-        padright = new Paddle(this, 10, 100, 20, height / 2, width - 15, 10, false);
-        padleft = new Paddle(this, 10, 100, 20, height / 2, 15, 10, true);
+        padright = new Paddle(this, 10, 100, 20, height / 2, width - 15, 10, false, false);
+        padleft = new Paddle(this, 10, 100, 20, height / 2, 15, 10, true, false);
         
         bg = new BG(this);
 
@@ -59,8 +59,8 @@ public class Pongrave extends Visual
         calculateFrequencyBands();
         background(0);
         bg.render();
-        bg.renderbars();
         
+        bg.renderbars();
         p.render();
         p.update();
         p.edgedetect(scr);
@@ -111,10 +111,14 @@ public class Pongrave extends Visual
             if(p.playing == true)
             {
                 p.playing = false;
+                padleft.playing = false;
+                padright.playing = false;
             }
             else
             {
                 p.playing = true;
+                padleft.playing = true;
+                padright.playing = true;
             }
         }
         if (keyCode == ENTER)

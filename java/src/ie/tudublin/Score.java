@@ -15,16 +15,18 @@ public class Score extends Pongrave
     void scoredisplayright()
     {
         Pongrave.pushMatrix();
-        Pongrave.fill(255);
+        Pongrave.fill(0);
         Pongrave.textSize(35);
+        Pongrave.textAlign(CENTER);
         Pongrave.text(scrR, (Pongrave.width / 2) + 50, 50);
         Pongrave.popMatrix();
     }
     void scoredisplayleft()
     {
         Pongrave.pushMatrix();
-        Pongrave.fill(255);
+        Pongrave.fill(0);
         Pongrave.textSize(35);
+        Pongrave.textAlign(CENTER);
         Pongrave.text(scrL, (Pongrave.width / 2) - 50, 50);
         Pongrave.popMatrix();
     }
