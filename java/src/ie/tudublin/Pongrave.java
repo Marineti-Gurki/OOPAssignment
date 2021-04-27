@@ -29,11 +29,9 @@ public class Pongrave extends Visual
         setFrameSize(256);
         startMinim();
         loadAudio("RuleTheWorld.mp3");
-        getAudioPlayer().loop();
-        getAudioPlayer().setGain(-8); 
         lerpedBuffer = new float[width];
         check = 0;
-        mn = new Menu(this, 200, "Pong");
+        mn = new Menu(this, 200);
 
         p = new Puck(this, width/2, height/2, random(5, 8), random(5, 8), false);
 
@@ -62,7 +60,7 @@ public class Pongrave extends Visual
         calculateFrequencyBands();
         background(0);
 
-        if(mousePressed == true && mouseX < mn.buttonloc.x + mn.buttonsize.x/2 && mouseX > mn.buttonloc.x - mn.buttonsize.x/2 && mouseY < mn.buttonloc.y + mn.buttonsize.y/2 && mouseY > mn.buttonloc.y - mn.buttonsize.y/2)
+        if(mousePressed == true && mouseX < mn.buttonloc.x + mn.buttonsize.x/2 && mouseX > mn.buttonloc.x - mn.buttonsize.x/2 && mouseY < mn.buttonloc.y + mn.buttonsize.y/2 && mouseY > mn.buttonloc.y - mn.buttonsize.y/2 && check == 0)
         {
             check = 1;
             println("test");
@@ -74,45 +72,21 @@ public class Pongrave extends Visual
             check = 0;
         }
 
-        println(mouseX);
-
         switch(check)
         {
             case 0:
                 mn.render();
                 mn.button();
+                getAudioPlayer().loop();
+                getAudioPlayer().setGain(-8); 
                 break;
             case 1:
                 Pong();
             break;
         }
 
-        
-        // bg.render();
-        
-        // bg.renderbars();
-        // p.render();
-        // p.update();
-        // p.edgedetect(scr);
-        // p.paddledetectleft(padleft);
-        // p.paddledetectright(padright);
-
-        // scr.scoredisplayright();
-        // scr.scoredisplayleft();
-        
-        // padright.render();
-        // padright.rightInput();
-        // padright.update();
-        // padleft.render();
-        // padleft.leftInput();
-        // padleft.update();
     }
 
-    // public void keyReleased()
-    // {
-    //     padright.control(0);
-    //     padleft.control(0);
-    // }
 
     boolean checkKey(int k) {
         if (keys.length >= k) {
@@ -150,7 +124,7 @@ public class Pongrave extends Visual
     public void keyPressed() {
         keys[keyCode] = true;
 
-        if (keyCode == ' ')
+        if (keyCode == ' ' && check == 1)
         {
             p.PlayPause();
             if(getAudioPlayer().isPlaying())
