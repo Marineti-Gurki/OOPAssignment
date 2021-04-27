@@ -23,17 +23,7 @@ public class Puck extends Pongrave
 
     void paddledetectleft(Paddle p)
     {
-        Pongrave.noStroke();
-        Pongrave.fill(255, 0, 0);
-        // Pongrave.rectMode(CENTER);
-
-        /*debug code
-        // Pongrave.rect(p.posx, p.posy, p.x, p.y);
-        // Pongrave.text(speedx, 50, 50);
-        // Pongrave.text(x, 50, 70);
-        // Pongrave.text(p.x, 50, 90);
-        // Pongrave.text(p.posx, 50, 120);
-        */
+        //Left side paddle detection. If the puck x and y are touching the paddle, puck reverses speed and angle changes to depending on what part of paddle was hit.
         if(x - 10 <= p.posx + p.x/2 && y - 10 <= p.posy + p.y/2 && y + 10 >= p.posy - p.y/2)
         {
             if(x >= p.posx)
@@ -59,6 +49,7 @@ public class Puck extends Pongrave
 
     void paddledetectright(Paddle p)
     {
+        //Right side paddle detection. If the puck x and y are touching the paddle, puck reverses speed and angle changes to depending on what part of paddle was hit.
         if(x + 10 >= p.posx - p.x/2 && y - 10 <= p.posy + p.y/2 && y + 10 >= p.posy - p.y/2)
         {
             if(x <= p.posx)
