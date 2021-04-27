@@ -8,14 +8,15 @@ public class Menu extends Pongrave
     PVector menubox;
     PVector buttonsize;
     PVector buttonloc;
-    String button1text;
+    String buttontext;
 
-    public Menu(Pongrave pongrave, int gap) {
+    public Menu(Pongrave pongrave, int gap, String buttontext) {
         Pongrave = pongrave;
         menubox = new PVector(Pongrave.width/4, Pongrave.height/1.5f);
         buttonsize = new PVector(Pongrave.width/4 - 50, Pongrave.height/10);
         buttonloc = new PVector(Pongrave.width/2, gap);
-        button1text = "Start";
+        this.buttontext = buttontext;
+
     }
 
     // void Setup()
@@ -46,10 +47,12 @@ public class Menu extends Pongrave
         Pongrave.rect(buttonloc.x, buttonloc.y, buttonsize.x, buttonsize.y);
         Pongrave.popMatrix();
 
+        Pongrave.pushMatrix();
         Pongrave.textAlign(CENTER);
         Pongrave.textSize(50);
         Pongrave.fill(255);
-        Pongrave.text(button1text, buttonloc.x, buttonloc.y + buttonsize.y/4);
+        Pongrave.text(buttontext, buttonloc.x, buttonloc.y + buttonsize.y/4);
+        Pongrave.popMatrix();
     }
 
     // public void mousePressed()

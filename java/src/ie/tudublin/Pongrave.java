@@ -10,6 +10,10 @@ public class Pongrave extends Visual
     Score scr;
     boolean[] keys = new boolean[1024];
     float[] lerpedBuffer;
+    Menu bttn1;
+    Menu bttn2;
+    Menu bttn3;
+    Menu bttn4;
     Menu mn;
 
     public int check;
@@ -31,7 +35,11 @@ public class Pongrave extends Visual
         loadAudio("RuleTheWorld.mp3");
         lerpedBuffer = new float[width];
         check = 0;
-        mn = new Menu(this, 200);
+        mn = new Menu(this, 0, "Menu");
+        bttn1 = new Menu(this, 200, "Play");
+        bttn2 = new Menu(this, 300, "Songs");
+        bttn3 = new Menu(this, 400, "Settings");
+        bttn4 = new Menu(this, 500, "Exit");
 
         p = new Puck(this, width/2, height/2, random(5, 8), random(5, 8), false);
 
@@ -60,7 +68,7 @@ public class Pongrave extends Visual
         calculateFrequencyBands();
         background(0);
 
-        if(mousePressed == true && mouseX < mn.buttonloc.x + mn.buttonsize.x/2 && mouseX > mn.buttonloc.x - mn.buttonsize.x/2 && mouseY < mn.buttonloc.y + mn.buttonsize.y/2 && mouseY > mn.buttonloc.y - mn.buttonsize.y/2 && check == 0)
+        if(mousePressed == true && mouseX < bttn1.buttonloc.x + bttn1.buttonsize.x/2 && mouseX > bttn1.buttonloc.x - bttn1.buttonsize.x/2 && mouseY < bttn1.buttonloc.y + bttn1.buttonsize.y/2 && mouseY > bttn1.buttonloc.y - bttn1.buttonsize.y/2 && check == 0)
         {
             check = 1;
             println("test");
@@ -69,6 +77,7 @@ public class Pongrave extends Visual
         }
         if(checkKey('M'))
         {
+            p.playing = false;
             check = 0;
         }
 
@@ -76,7 +85,10 @@ public class Pongrave extends Visual
         {
             case 0:
                 mn.render();
-                mn.button();
+                bttn1.button();
+                bttn2.button();
+                bttn3.button();
+                bttn4.button();
                 getAudioPlayer().loop();
                 getAudioPlayer().setGain(-8); 
                 break;
