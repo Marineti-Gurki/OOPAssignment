@@ -75,6 +75,17 @@ public class Pongrave extends Visual
             p.reset();
             scr.scorereset();
         }
+        if(mousePressed == true && mouseX < bttn2.buttonloc.x + bttn2.buttonsize.x/2 && mouseX > bttn2.buttonloc.x - bttn2.buttonsize.x/2 && mouseY < bttn2.buttonloc.y + bttn2.buttonsize.y/2 && mouseY > bttn2.buttonloc.y - bttn2.buttonsize.y/2 && check == 0)
+        {
+            check = 2;
+            
+            // p.reset();
+            // scr.scorereset();
+        }
+        if(mousePressed == true && mouseX < bttn4.buttonloc.x + bttn4.buttonsize.x/2 && mouseX > bttn4.buttonloc.x - bttn4.buttonsize.x/2 && mouseY < bttn4.buttonloc.y + bttn4.buttonsize.y/2 && mouseY > bttn4.buttonloc.y - bttn4.buttonsize.y/2 && check == 0)
+        {
+            check = 3;
+        }
         if(checkKey('M'))
         {
             p.playing = false;
@@ -95,6 +106,14 @@ public class Pongrave extends Visual
             case 1:
                 Pong();
             break;
+            case 2:
+                println("test");
+                mn.render();
+                getAudioPlayer().pause();
+            break;
+            case 3:
+                exit();
+            break;
         }
 
     }
@@ -109,7 +128,6 @@ public class Pongrave extends Visual
 
     public void Pong()
     {
-
         bg.render();
         
         bg.renderbars();
