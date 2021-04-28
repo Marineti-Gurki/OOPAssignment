@@ -55,6 +55,16 @@ public class Menu extends Pongrave
         Pongrave.popMatrix();
     }
 
+    void backbutton()
+    {
+        Pongrave.pushMatrix();
+        Pongrave.textAlign(LEFT);
+        Pongrave.textSize(50);
+        Pongrave.fill(255);
+        Pongrave.text(buttontext, Pongrave.width/2 - menubox.x, Pongrave.height/2 - buttonsize.y/2);
+        Pongrave.popMatrix();
+    }
+
     // public void mousePressed()
     // {
 

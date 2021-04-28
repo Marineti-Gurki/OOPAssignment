@@ -14,6 +14,7 @@ public class Pongrave extends Visual
     Menu bttn2;
     Menu bttn3;
     Menu bttn4;
+    Menu backbttn;
     Menu mn;
 
     public int check;
@@ -40,6 +41,7 @@ public class Pongrave extends Visual
         bttn2 = new Menu(this, 300, "Songs");
         bttn3 = new Menu(this, 400, "Settings");
         bttn4 = new Menu(this, 500, "Exit");
+        backbttn = new Menu(this, 500, "Back");
 
         p = new Puck(this, width/2, height/2, random(5, 8), random(5, 8), false);
 
@@ -78,14 +80,18 @@ public class Pongrave extends Visual
         if(mousePressed == true && mouseX < bttn2.buttonloc.x + bttn2.buttonsize.x/2 && mouseX > bttn2.buttonloc.x - bttn2.buttonsize.x/2 && mouseY < bttn2.buttonloc.y + bttn2.buttonsize.y/2 && mouseY > bttn2.buttonloc.y - bttn2.buttonsize.y/2 && check == 0)
         {
             check = 2;
-            
-            // p.reset();
-            // scr.scorereset();
+
         }
-        if(mousePressed == true && mouseX < bttn4.buttonloc.x + bttn4.buttonsize.x/2 && mouseX > bttn4.buttonloc.x - bttn4.buttonsize.x/2 && mouseY < bttn4.buttonloc.y + bttn4.buttonsize.y/2 && mouseY > bttn4.buttonloc.y - bttn4.buttonsize.y/2 && check == 0)
+        if(mousePressed == true && mouseX < bttn3.buttonloc.x + bttn3.buttonsize.x/2 && mouseX > bttn3.buttonloc.x - bttn3.buttonsize.x/2 && mouseY < bttn3.buttonloc.y + bttn3.buttonsize.y/2 && mouseY > bttn3.buttonloc.y - bttn3.buttonsize.y/2 && check == 0)
         {
             check = 3;
         }
+
+        if(mousePressed == true && mouseX < bttn4.buttonloc.x + bttn4.buttonsize.x/2 && mouseX > bttn4.buttonloc.x - bttn4.buttonsize.x/2 && mouseY < bttn4.buttonloc.y + bttn4.buttonsize.y/2 && mouseY > bttn4.buttonloc.y - bttn4.buttonsize.y/2 && check == 0)
+        {
+            check = 4;
+        }
+
         if(checkKey('M'))
         {
             p.playing = false;
@@ -109,9 +115,16 @@ public class Pongrave extends Visual
             case 2:
                 println("test");
                 mn.render();
+                backbttn.backbutton();
                 getAudioPlayer().pause();
             break;
             case 3:
+            println("test2");
+                mn.render();
+                backbttn.backbutton();
+                getAudioPlayer().pause();
+            break;
+            case 4:
                 exit();
             break;
         }
@@ -148,7 +161,9 @@ public class Pongrave extends Visual
         padleft.update();
     }
 
-    public void mousePressed() {
+    public void mousePressed() 
+    {
+
     }
 
     public void keyPressed() {
