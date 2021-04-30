@@ -11,13 +11,17 @@ public class BG extends Pongrave
 
     public BG(Pongrave pongrave) {
         Pongrave = pongrave;
-        size = new PVector(1000, 1000);
+        size = new PVector(Pongrave.width/1.44f, Pongrave.width/1.44f);
         halfH = Pongrave.height/2;
         halfW = Pongrave.width/2;
     }
     
     void render()
     {
+        halfH = Pongrave.height/2;
+        halfW = Pongrave.width/2;
+        size.x = Pongrave.width/1.44f;
+        size.y = Pongrave.width/1.44f;
         Pongrave.colorMode(HSB);
         rot += Pongrave.getAmplitude() / 5.0f;
         Pongrave.calculateFrequencyBands();
@@ -33,7 +37,8 @@ public class BG extends Pongrave
             Pongrave.strokeWeight(2);
             Pongrave.translate(halfW, halfH);
             Pongrave.rotateY(rot/4);
-            Pongrave.sphere(1000);
+            float spheresize = Pongrave.width/2 + Pongrave.height/2; 
+            Pongrave.sphere(spheresize);
             Pongrave.popMatrix();
             
             Pongrave.pushMatrix();
@@ -41,7 +46,7 @@ public class BG extends Pongrave
             Pongrave.rectMode(CENTER);
             Pongrave.stroke(150+h, 50, 100);
             Pongrave.strokeWeight(2);
-            Pongrave.rect(Pongrave.width - Pongrave.width/4, halfH, size.x/2, size.y);
+            Pongrave.rect(Pongrave.width - Pongrave.width/4, halfH, size.x, size.y);
             Pongrave.popMatrix();
             
             Pongrave.pushMatrix();
@@ -49,7 +54,7 @@ public class BG extends Pongrave
             Pongrave.rectMode(CENTER);
             Pongrave.stroke(150+h, 50, 100);
             Pongrave.strokeWeight(2);
-            Pongrave.rect(Pongrave.width/4, halfH, size.x/2, size.y);
+            Pongrave.rect(Pongrave.width/4, halfH, size.x, size.y);
             Pongrave.popMatrix();
         }
     }
@@ -70,8 +75,6 @@ public class BG extends Pongrave
             Pongrave.rect(Pongrave.width, i * gap, -Pongrave.getSmoothedBands()[i] * 1f, gap); 
             Pongrave.popMatrix();
 
-        // cy = this.mv.height / 2;
-        // mv.line(i, cy, i, cy + cy * mv.getAudioBuffer().get(i));
         }
     }
 }

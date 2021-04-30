@@ -11,23 +11,20 @@ public class Menu extends Pongrave
     String buttontext;
     float backbttnX;
     float backbttnY;
+    int gap;
 
     public Menu(Pongrave pongrave, int gap, String buttontext) {
         Pongrave = pongrave;
         menubox = new PVector(Pongrave.width/4, Pongrave.height/1.5f);
         buttonsize = new PVector(Pongrave.width/4 - 50, Pongrave.height/10);
-        buttonloc = new PVector(Pongrave.width/2, gap);
+        buttonloc = new PVector(Pongrave.width/2, Pongrave.height/2 - gap);
         this.buttontext = buttontext;
+        this.gap = gap;
 
 
-        backbttnX = Pongrave.width/2 - menubox.x;
+        backbttnX = 50 + Pongrave.width/2 - menubox.x;
         backbttnY = Pongrave.height/2 - buttonsize.y/2;
     }
-
-    // void Setup()
-    // {
-    //     menubox = new PVector(Pongrave.width/4, height - 50);
-    // }
 
     void render()
     {

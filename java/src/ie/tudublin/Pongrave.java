@@ -16,6 +16,7 @@ public class Pongrave extends Visual
     Menu bttn4;
     Menu backbttn;
     Menu mn;
+    Settingsmenu setting1;
 
     public int check;
     float halfW = width / 2;
@@ -37,11 +38,13 @@ public class Pongrave extends Visual
         lerpedBuffer = new float[width];
         check = 0;
         mn = new Menu(this, 0, "Menu");
-        bttn1 = new Menu(this, 200, "Play");
-        bttn2 = new Menu(this, 300, "Songs");
-        bttn3 = new Menu(this, 400, "Settings");
-        bttn4 = new Menu(this, 500, "Exit");
-        backbttn = new Menu(this, 500, "Back");
+        bttn1 = new Menu(this, 180, "Play");
+        bttn2 = new Menu(this, 80, "Songs");
+        bttn3 = new Menu(this, -20, "Settings");
+        bttn4 = new Menu(this, -120, "Exit");
+        backbttn = new Menu(this, -120, "Back");
+
+        setting1 = new Settingsmenu(this, 200, "Speed Multiplier");
 
         p = new Puck(this, width/2, height/2, random(5, 8), random(5, 8), false);
 
@@ -80,8 +83,8 @@ public class Pongrave extends Visual
         if(mousePressed == true && mouseX < bttn2.buttonloc.x + bttn2.buttonsize.x/2 && mouseX > bttn2.buttonloc.x - bttn2.buttonsize.x/2 && mouseY < bttn2.buttonloc.y + bttn2.buttonsize.y/2 && mouseY > bttn2.buttonloc.y - bttn2.buttonsize.y/2 && check == 0)
         {
             check = 2;
-
         }
+
         if(mousePressed == true && mouseX < bttn3.buttonloc.x + bttn3.buttonsize.x/2 && mouseX > bttn3.buttonloc.x - bttn3.buttonsize.x/2 && mouseY < bttn3.buttonloc.y + bttn3.buttonsize.y/2 && mouseY > bttn3.buttonloc.y - bttn3.buttonsize.y/2 && check == 0)
         {
             check = 3;
@@ -91,7 +94,8 @@ public class Pongrave extends Visual
         {
             check = 4;
         }
-        if(mousePressed == true && mouseX < backbttn.backbttnX + backbttn.backbttnX/4 && mouseX > backbttn.backbttnX - backbttn.backbttnX/4 && mouseY < backbttn.backbttnY + backbttn.backbttnY/5 && mouseY > backbttn.backbttnY - backbttn.backbttnY/5 && check == 2)
+
+        if(mousePressed == true && mouseX < backbttn.backbttnX + backbttn.backbttnX/4 && mouseX > backbttn.backbttnX - backbttn.backbttnX/4 && mouseY < backbttn.backbttnY + backbttn.backbttnY/12 && mouseY > backbttn.backbttnY - backbttn.backbttnY/6 && (check == 2 || check == 3))
         {
             println("test");
             check = 0;
@@ -120,24 +124,23 @@ public class Pongrave extends Visual
             break;
 
             case 2:
-                
                 mn.render();
                 backbttn.backbutton();
                 getAudioPlayer().pause();
             break;
 
             case 3:
-            // println("test2");
                 mn.render();
                 backbttn.backbutton();
+                setting1.render();
                 getAudioPlayer().pause();
             break;
 
             case 4:
+                getAudioPlayer().pause();
                 exit();
             break;
         }
-
     }
 
     boolean checkKey(int k) {

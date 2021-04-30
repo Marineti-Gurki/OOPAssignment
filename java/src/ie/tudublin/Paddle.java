@@ -22,7 +22,6 @@ public class Paddle extends Pongrave
         this.posy = posy;
         this.posx = posx;
         this.padspeed = padspeed;
-
     }
 
     void render()
