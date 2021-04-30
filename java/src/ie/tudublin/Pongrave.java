@@ -73,7 +73,7 @@ public class Pongrave extends Visual
         if(mousePressed == true && mouseX < bttn1.buttonloc.x + bttn1.buttonsize.x/2 && mouseX > bttn1.buttonloc.x - bttn1.buttonsize.x/2 && mouseY < bttn1.buttonloc.y + bttn1.buttonsize.y/2 && mouseY > bttn1.buttonloc.y - bttn1.buttonsize.y/2 && check == 0)
         {
             check = 1;
-            println("test");
+            // println("test");
             p.reset();
             scr.scorereset();
         }
@@ -90,6 +90,11 @@ public class Pongrave extends Visual
         if(mousePressed == true && mouseX < bttn4.buttonloc.x + bttn4.buttonsize.x/2 && mouseX > bttn4.buttonloc.x - bttn4.buttonsize.x/2 && mouseY < bttn4.buttonloc.y + bttn4.buttonsize.y/2 && mouseY > bttn4.buttonloc.y - bttn4.buttonsize.y/2 && check == 0)
         {
             check = 4;
+        }
+        if(mousePressed == true && mouseX < backbttn.backbttnX + backbttn.backbttnX/4 && mouseX > backbttn.backbttnX - backbttn.backbttnX/4 && mouseY < backbttn.backbttnY + backbttn.backbttnY/5 && mouseY > backbttn.backbttnY - backbttn.backbttnY/5 && check == 2)
+        {
+            println("test");
+            check = 0;
         }
 
         if(checkKey('M'))
@@ -109,28 +114,31 @@ public class Pongrave extends Visual
                 getAudioPlayer().loop();
                 getAudioPlayer().setGain(-8); 
                 break;
+
             case 1:
                 Pong();
             break;
+
             case 2:
-                println("test");
+                
                 mn.render();
                 backbttn.backbutton();
                 getAudioPlayer().pause();
             break;
+
             case 3:
-            println("test2");
+            // println("test2");
                 mn.render();
                 backbttn.backbutton();
                 getAudioPlayer().pause();
             break;
+
             case 4:
                 exit();
             break;
         }
 
     }
-
 
     boolean checkKey(int k) {
         if (keys.length >= k) {
