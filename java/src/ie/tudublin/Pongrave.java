@@ -17,6 +17,9 @@ public class Pongrave extends Visual
     Menu backbttn;
     Menu mn;
     Settingsmenu setting1;
+    Settingsmenu setting2;
+    Settingsmenu setting3;
+    Settingsmenu setting4;
 
     public int check;
     float halfW = width / 2;
@@ -44,7 +47,10 @@ public class Pongrave extends Visual
         bttn4 = new Menu(this, -120, "Exit");
         backbttn = new Menu(this, -120, "Back");
 
-        setting1 = new Settingsmenu(this, 200, "Speed Multiplier");
+        setting1 = new Settingsmenu(this, 180, "Puck Speed", false, true, false, false, false);
+        setting2 = new Settingsmenu(this, 80, "Volume", false, false, true, false, false);
+        setting3 = new Settingsmenu(this, -20, "Mute", true, false, false, true, false);
+        setting4 = new Settingsmenu(this, -120, "Speed Boost", false, false, false, false, true);
 
         p = new Puck(this, width/2, height/2, random(5, 8), random(5, 8), false);
 
@@ -95,11 +101,12 @@ public class Pongrave extends Visual
             check = 4;
         }
 
-        if(mousePressed == true && mouseX < backbttn.backbttnX + backbttn.backbttnX/4 && mouseX > backbttn.backbttnX - backbttn.backbttnX/4 && mouseY < backbttn.backbttnY + backbttn.backbttnY/12 && mouseY > backbttn.backbttnY - backbttn.backbttnY/6 && (check == 2 || check == 3))
+        if(mousePressed == true && mouseX < backbttn.backbttnX + backbttn.backbttnX/5 && mouseX > backbttn.backbttnX - backbttn.backbttnX/5 && mouseY < backbttn.backbttnY + backbttn.backbttnY/5 && mouseY > backbttn.backbttnY - backbttn.backbttnY/5 && (check == 2 || check == 3))
         {
             println("test");
             check = 0;
         }
+
 
         if(checkKey('M'))
         {
@@ -133,6 +140,9 @@ public class Pongrave extends Visual
                 mn.render();
                 backbttn.backbutton();
                 setting1.render();
+                setting2.render();
+                setting3.render();
+                setting4.render();
                 getAudioPlayer().pause();
             break;
 

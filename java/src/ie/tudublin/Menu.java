@@ -1,6 +1,6 @@
 package ie.tudublin;
 import processing.core.PVector;
-
+import processing.core.PApplet;
 
 public class Menu extends Pongrave
 {
@@ -21,9 +21,8 @@ public class Menu extends Pongrave
         this.buttontext = buttontext;
         this.gap = gap;
 
-
-        backbttnX = 50 + Pongrave.width/2 - menubox.x;
-        backbttnY = Pongrave.height/2 - buttonsize.y/2;
+        backbttnX = Pongrave.width/2 - menubox.x/1.3f;
+        backbttnY = Pongrave.height/2 - buttonsize.y*2.65f;
     }
 
     void render()
@@ -52,6 +51,9 @@ public class Menu extends Pongrave
         Pongrave.pushMatrix();
         Pongrave.textAlign(CENTER);
         Pongrave.textSize(50);
+        float textsize = Pongrave.textWidth(buttontext);
+        float fixedsize = PApplet.map(textsize, 0, Pongrave.width, Pongrave.mn.buttonloc.x - Pongrave.mn.buttonsize.x/2, Pongrave.mn.buttonloc.x + Pongrave.mn.buttonsize.x/2);
+        Pongrave.textSize(fixedsize/10);
         Pongrave.fill(255);
         Pongrave.text(buttontext, buttonloc.x, buttonloc.y + buttonsize.y/4);
         Pongrave.popMatrix();
@@ -63,17 +65,13 @@ public class Menu extends Pongrave
         Pongrave.rectMode(CENTER);
         Pongrave.fill(0);
         Pongrave.stroke(255);
-        Pongrave.rect(backbttnX, backbttnY-15, 130, 70);
+        Pongrave.rect(Pongrave.width/2 - menubox.x/1.3f, Pongrave.height/2 - buttonsize.y*2.65f, 130, 70);
         Pongrave.textAlign(CENTER);
         Pongrave.textSize(50);
         Pongrave.fill(255);
-        Pongrave.text(buttontext, backbttnX, backbttnY);
+        Pongrave.text(buttontext, Pongrave.width/2 - menubox.x/1.3f, (Pongrave.height/2 - buttonsize.y*2.65f)+15);
         Pongrave.popMatrix();
     }
 
-    // public void mousePressed()
-    // {
-
-    // }
 
 }
