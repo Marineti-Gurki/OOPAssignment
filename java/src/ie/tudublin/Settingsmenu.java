@@ -79,7 +79,7 @@ public class Settingsmenu extends Pongrave
                 println("test-");
             }
         }
-
+        // mouseX < bttn2.buttonloc.x + bttn2.buttonsize.x/2 && mouseX > bttn2.buttonloc.x - bttn2.buttonsize.x/2 && mouseY < bttn2.buttonloc.y + bttn2.buttonsize.y/2 && mouseY > bttn2.buttonloc.y - bttn2.buttonsize.y/2
 
         Pongrave.pushMatrix();
         Pongrave.textAlign(RIGHT);
