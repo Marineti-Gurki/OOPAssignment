@@ -1,8 +1,8 @@
 # Music Visualiser Project
 
-Name:
+Name: Matiss Priednieks
 
-Student Number: 
+Student Number: C19340106
 
 ## Instructions
 - Fork this repository and use it a starter project for your assignment
