@@ -23,6 +23,8 @@ public class Pongrave extends Visual
     float gainvaluesong;
     float gainvaluesample;
     int volumelevel;
+    float startspeed;
+    float speedincrease;
 
     public int check;
     float halfW = width / 2;
@@ -33,36 +35,41 @@ public class Pongrave extends Visual
         size(1080, 720, P3D);
         // fullScreen(P3D);
     }
- 
+    
     public void setup()
     {
         colorMode(RGB);
-        // noCursor();
         setFrameSize(256);
         startMinim();
         loadAudio("RuleTheWorld.mp3");
         volumelevel = -8;
+        getAudioPlayer().setGain(volumelevel); 
         lerpedBuffer = new float[width];
         check = 0;
+
+        //menu button variables in order: Pongrave pongrave, int gap, String buttontext
         mn = new Menu(this, 0, "Menu");
         bttn1 = new Menu(this, 180, "Play");
         bttn2 = new Menu(this, 80, "Songs");
         bttn3 = new Menu(this, -20, "Settings");
         bttn4 = new Menu(this, -120, "Exit");
         backbttn = new Menu(this, -120, "Back");
-
+        
+        //settings menu button variables in order: Pongrave pongrave, int gap, String settingname, boolean box, boolean puckspeed, boolean vol, boolean mute, boolean speedgain
         setting1 = new Settingsmenu(this, 180, "Puck Speed", false, true, false, false, false);
         setting2 = new Settingsmenu(this, 80, "Volume", false, false, true, false, false);
         setting3 = new Settingsmenu(this, -20, "Mute", true, false, false, true, false);
         setting4 = new Settingsmenu(this, -120, "Speed Boost", false, false, false, false, true);
-
+        
+        //puck variables in order: Pongrave pongrave, float x, float y, float speedx, float speedy, boolean playing
         p = new Puck(this, width/2, height/2, random(5, 8), random(5, 8), false);
 
+        //pad variables in order: Pongrave pongrave, float x, float y, float h, float posy, float posx, float padspeed, boolean padleft, boolean playing
         padright = new Paddle(this, 10, 100, 20, height / 2, width - 15, 10, false, false);
         padleft = new Paddle(this, 10, 100, 20, height / 2, 15, 10, true, false);
         
         bg = new BG(this);
-
+        //score variables in order: Pongrave pongrave, int scrL, int scrR
         scr = new Score(this, 0, 0);
         p.reset();
         p.speedcontrol();
@@ -83,18 +90,20 @@ public class Pongrave extends Visual
         calculateFrequencyBands();
         background(0);
 
+        //if user clicks on first button in main menu, it will play pong
         if(mousePressed == true && mouseX < bttn1.buttonloc.x + bttn1.buttonsize.x/2 && mouseX > bttn1.buttonloc.x - bttn1.buttonsize.x/2 && mouseY < bttn1.buttonloc.y + bttn1.buttonsize.y/2 && mouseY > bttn1.buttonloc.y - bttn1.buttonsize.y/2 && check == 0)
         {
             check = 1;
-            // println("test");
             p.reset();
             scr.scorereset();
         }
+        //if user clicks the second button while in main menu, it will go to songs library
         if(mousePressed == true && mouseX < bttn2.buttonloc.x + bttn2.buttonsize.x/2 && mouseX > bttn2.buttonloc.x - bttn2.buttonsize.x/2 && mouseY < bttn2.buttonloc.y + bttn2.buttonsize.y/2 && mouseY > bttn2.buttonloc.y - bttn2.buttonsize.y/2 && check == 0)
         {
             check = 2;
         }
 
+        //if user clicks the third button while in the main menu, it will go to settings
         if(mousePressed == true && mouseX < bttn3.buttonloc.x + bttn3.buttonsize.x/2 && mouseX > bttn3.buttonloc.x - bttn3.buttonsize.x/2 && mouseY < bttn3.buttonloc.y + bttn3.buttonsize.y/2 && mouseY > bttn3.buttonloc.y - bttn3.buttonsize.y/2 && check == 0)
         {
             check = 3;

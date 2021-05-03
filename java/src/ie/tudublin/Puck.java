@@ -1,5 +1,7 @@
 package ie.tudublin;
 
+import processing.core.PApplet;
+
 public class Puck extends Pongrave
 {
     Pongrave Pongrave;
@@ -8,7 +10,7 @@ public class Puck extends Pongrave
     float rot;
     boolean playing;
     float tempxspeed, tempyspeed;
-    float startspeed;
+    
 
     public Puck(Pongrave pongrave, float x, float y, float speedx, float speedy, boolean playing) {
         Pongrave = pongrave;
@@ -18,31 +20,36 @@ public class Puck extends Pongrave
         this.speedy = speedy;
         this.playing = playing;
         rot = random(TWO_PI);
-        startspeed = 5;
+        Pongrave.startspeed = 5;
         Pongrave.loadSample("tabletennis.mp3");
         Pongrave.loadSample("buzzer.mp3");
+        Pongrave.speedincrease = 1.05f;
     }
 
     void paddledetectleft(Paddle p)
     {
         //Left side paddle detection. If the puck x and y are touching the paddle, puck reverses speed and angle changes to depending on what part of paddle was hit.
-        if(x - 10 <= p.posx + p.x/2 && y - 10 <= p.posy + p.y/2 && y + 10 >= p.posy - p.y/2)
+        if(x - 15 <= p.posx + p.x/2 && y - 10 <= p.posy + p.y/2 && y + 10 >= p.posy - p.y/2)
         {
-            if(x >= p.posx)
+            if(p.posx-p.posx/2 <= x)
             {
-                Pongrave.loadSample("tabletennis.mp3");
-                float rads = radians(45);
+                Pongrave.loadSample("tabletennis.mp3"); //loads puck sound
+                //calculates the paddles sections so puck can bounce in the correct direction basedo on where it hits
+                float rads = PApplet.radians(45);
                 float diff = y - (p.posy - p.y/2);
-                float angle = map(diff, 0, p.y, -rads, rads);
+                float angle = PApplet.map(diff, 0, p.y, -rads, rads);
                 if(speedx < 14 || speedx > -14)
                 {
-                    speedx *= -1.05f;
+                    speedx *= -Pongrave.speedincrease; //reverses direction of puck and multiplies by the user selected multiplier
                 }
                 if(speedx > 14 || speedx < -14)
                 {
                     speedx = 14;
                 }
-                speedy = startspeed * sin(angle);
+                //changes the angle of the puck based on where it hit.
+                speedy = Pongrave.startspeed * sin(angle);
+
+                //plays puck sound whenever it hits something
                 Pongrave.getAs().setGain(Pongrave.gainvaluesample);
                 Pongrave.getAs().trigger();
             }
@@ -52,23 +59,28 @@ public class Puck extends Pongrave
     void paddledetectright(Paddle p)
     {
         //Right side paddle detection. If the puck x and y are touching the paddle, puck reverses speed and angle changes to depending on what part of paddle was hit.
-        if(x + 10 >= p.posx - p.x/2 && y - 10 <= p.posy + p.y/2 && y + 10 >= p.posy - p.y/2)
+        if(x + 15 >= p.posx - p.x/2 && y - 10 <= p.posy + p.y/2 && y + 10 >= p.posy - p.y/2)
         {
-            if(x <= p.posx)
+            if(p.posx+p.posx/2 >= x)
             {
-                Pongrave.loadSample("tabletennis.mp3");
-                float rads2 = radians(135);
-                float diff = y - (p.posy - p.y/2);
-                float angle = map(diff, 0, p.y, -rads2, rads2);
-                if(speedx < 15)
+                Pongrave.loadSample("tabletennis.mp3"); //loads puck sound
+                //calculates the paddles sections so puck can bounce in the correct direction basedo on where it hits
+                float rads2 = PApplet.radians(135);
+                float diff = y - (p.posy - p.y/2f);
+                float angle = PApplet.map(diff, 0, p.y, -rads2, rads2);
+
+                if(speedx < 14 || speedx > -14)
                 {
-                    speedx *= -1.05f;
+                    speedx *= -Pongrave.speedincrease; //reverses direction of puck and multiplies by the user selected multiplier
                 }
-                if(speedx > 15)
+                if(speedx > 14 || speedx < -14)
                 {
-                    speedx = 15;
+                    speedx = -14;
                 }
-                speedy = startspeed * sin(angle);
+                //changes the angle of the puck based on where it hit.
+                speedy = Pongrave.startspeed * sin(angle);
+
+                //plays puck sound whenever it hits something
                 Pongrave.getAs().setGain(Pongrave.gainvaluesample);
                 Pongrave.getAs().trigger();
             }
@@ -79,14 +91,16 @@ public class Puck extends Pongrave
     {
         if(playing == false)
         {
-            
+            //stores puck speed and direction when paused
             tempxspeed = speedx;
             tempyspeed = speedy;
+            //sets puck speed and direction to 0 when paused
             speedx = 0;
             speedy = 0;
         }
         if(playing == true)
         {
+            //returns pucks speed and direction after unpausing
             speedx = tempxspeed;
             speedy = tempyspeed;
         }
@@ -95,30 +109,32 @@ public class Puck extends Pongrave
 
     void speedcontrol()
     {
+        //buffer for pausing the game, so that when unpaused, puck can return to play from where it left off.
         tempxspeed = speedx;
         tempyspeed = speedy;
     }
 
     void render() 
     {
+        println(speedx);
         Pongrave.calculateFrequencyBands();
         float[] bands = Pongrave.getSmoothedBands();
         for(int i = 0 ; i < bands.length; i ++)
         {
+            //draws the puck
             float h = bands[i];
             h = (h + 10f) % 255;
             Pongrave.pushMatrix();
             Pongrave.colorMode(HSB);
-            // Pongrave.ellipse(x, y, 25, 25);
             Pongrave.translate(x, y);
             Pongrave.lights();
             Pongrave.strokeWeight(0.5f);
             Pongrave.stroke(255, 50, 255);
             Pongrave.fill(255, 0, 255);
             Pongrave.sphere(20);
-            // Pongrave.ellipse(x, y, 50, 50);
             Pongrave.popMatrix();
 
+            //if game is paused and not in menu, shows a pause/play sign and has a black transparent backdrop
             if(playing == true && Pongrave.check == 1)
             {
                 Pongrave.pushMatrix();
@@ -140,16 +156,16 @@ public class Puck extends Pongrave
     }
     void update()
     {
-        x = x + speedx;
-        y = y + speedy;
+        x = x + speedx; //updates x position of puck
+        y = y + speedy; //updates y position of puck
     }
     void reset()
     {
         //gives puck random angle and sets puck speed
         rot = random(-PI/4, PI/4);
         
-        speedx = startspeed * cos(rot);
-        speedy = startspeed * sin(rot);
+        speedx = Pongrave.startspeed * cos(rot);
+        speedy = Pongrave.startspeed * sin(rot);
         
         //sets puck to middle
         x = Pongrave.width / 2;
@@ -164,6 +180,7 @@ public class Puck extends Pongrave
 
     void edgedetect(Score scr) 
     {
+        //if the puck goes off screen, gives score to the player opposite of where it went off. plays a sound everytime someone scores.
         if(y - 12.5 < 0 || y + 12.5 > Pongrave.height)
         {
             Pongrave.loadSample("tabletennis.mp3");

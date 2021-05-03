@@ -100,6 +100,24 @@ public class Settingsmenu extends Pongrave
         //if setting is puckspeed, it will check if mouse is pressing on plus or minus and will adjust puck speed accordingly. **needs implementing of setting itself**
         if(puckspeed)
         {
+            if((Pongrave.mouseX < minusboxX1 + tickbox.x/2
+            && Pongrave.mouseX > minusboxX1 - tickbox.x/2
+            && Pongrave.mouseY < minusboxY1 + tickbox.x/2
+            && Pongrave.mouseY > minusboxY1 - tickbox.x/2) 
+            || 
+            (Pongrave.mouseX < plusboxX1 + tickbox.x/2 
+            && Pongrave.mouseX > plusboxX1 - tickbox.x/2 
+            && Pongrave.mouseY < plusboxY1 + tickbox.x/2 
+            && Pongrave.mouseY > plusboxY1 - tickbox.x/2))
+            {
+                Pongrave.pushMatrix();
+                Pongrave.textAlign(CENTER);
+                Pongrave.fill(255, 255, 255);
+                Pongrave.textSize(30);
+                Pongrave.text("Puck Speed:" + Pongrave.startspeed, Pongrave.width/2, 100);
+                Pongrave.popMatrix();
+            }
+
             Pongrave.pushMatrix();
             if(Pongrave.mousePressed == true 
             && Pongrave.mouseX < minusboxX1 + tickbox.x/2
@@ -107,8 +125,16 @@ public class Settingsmenu extends Pongrave
             && Pongrave.mouseY < minusboxY1 + tickbox.x/2
             && Pongrave.mouseY > minusboxY1 - tickbox.x/2)
             {
-                //placeholder code
-                println("Minus");
+                Pongrave.delay(100);
+                // makes it so startspeed has a minimum value of 1.
+                if(Pongrave.startspeed <= 1)
+                {
+                    Pongrave.startspeed = 1;
+                }
+                else
+                {
+                    Pongrave.startspeed -= 1;
+                }
             }
             if(Pongrave.mousePressed == true 
             && Pongrave.mouseX < plusboxX1 + tickbox.x/2
@@ -116,8 +142,16 @@ public class Settingsmenu extends Pongrave
             && Pongrave.mouseY < plusboxY1 + tickbox.x/2
             && Pongrave.mouseY > plusboxY1 - tickbox.x/2)
             {
-                //placeholder code
-                println("Plus");
+                Pongrave.delay(100);
+                // makes it so startspeed has a maximum value of 14.
+                if(Pongrave.startspeed >= 14)
+                {
+                    Pongrave.startspeed = 14;
+                }
+                else
+                {
+                    Pongrave.startspeed += 1;
+                }
             }
             Pongrave.popMatrix();
         }
@@ -164,9 +198,11 @@ public class Settingsmenu extends Pongrave
             && Pongrave.mouseY < plusboxY1 + tickbox.x/2
             && Pongrave.mouseY > plusboxY1 - tickbox.x/2)
             {
+                Pongrave.pushMatrix();
                 //placeholder code
                 Pongrave.delay(100);
                 Pongrave.volumelevel += 1;
+                Pongrave.popMatrix();
             }
             Pongrave.popMatrix();
         }
@@ -231,8 +267,27 @@ public class Settingsmenu extends Pongrave
             Pongrave.popMatrix();
         }
         
+        //speedgain of the puck after every bounce off of a paddle (only for paddles, walls don't increase the paddles speed)
         if(speedgain)
         {
+            if((Pongrave.mouseX < minusboxX1 + tickbox.x/2
+            && Pongrave.mouseX > minusboxX1 - tickbox.x/2
+            && Pongrave.mouseY < minusboxY1 + tickbox.x/2
+            && Pongrave.mouseY > minusboxY1 - tickbox.x/2) 
+            || 
+            (Pongrave.mouseX < plusboxX1 + tickbox.x/2 
+            && Pongrave.mouseX > plusboxX1 - tickbox.x/2 
+            && Pongrave.mouseY < plusboxY1 + tickbox.x/2 
+            && Pongrave.mouseY > plusboxY1 - tickbox.x/2))
+            {
+                Pongrave.pushMatrix();
+                Pongrave.textAlign(CENTER);
+                Pongrave.fill(255, 255, 255);
+                Pongrave.textSize(30);
+                Pongrave.text("Speed Gain:" + Pongrave.speedincrease + "x", Pongrave.width/2, 100);
+                Pongrave.popMatrix();
+            }
+
             Pongrave.pushMatrix();
             if(Pongrave.mousePressed == true 
             && Pongrave.mouseX < minusboxX1 + tickbox.x/2
@@ -241,7 +296,15 @@ public class Settingsmenu extends Pongrave
             && Pongrave.mouseY > minusboxY1 - tickbox.x/2)
             {
                 Pongrave.delay(100);
-                println("Minus");
+                // makes it so speedincrease has a minimum value of 1.
+                if(Pongrave.speedincrease <= 1)
+                {
+                    Pongrave.speedincrease = 1;
+                }
+                else
+                {
+                    Pongrave.speedincrease -= 0.01f;
+                }
             }
             if(Pongrave.mousePressed == true 
             && Pongrave.mouseX < plusboxX1 + tickbox.x/2
@@ -250,7 +313,15 @@ public class Settingsmenu extends Pongrave
             && Pongrave.mouseY > plusboxY1 - tickbox.x/2)
             {
                 Pongrave.delay(100);
-                println("Plus");
+                // makes it so speedincrease has a maximum value of 2.
+                if(Pongrave.speedincrease >= 2)
+                {
+                    Pongrave.speedincrease = 2;
+                }
+                else
+                {
+                    Pongrave.speedincrease += 0.01f;
+                }
             }
             Pongrave.popMatrix();
         }
