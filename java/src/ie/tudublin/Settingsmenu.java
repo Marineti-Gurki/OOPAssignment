@@ -97,7 +97,7 @@ public class Settingsmenu extends Pongrave
             Pongrave.popMatrix();
         }
 
-        //if setting is puckspeed, it will check if mouse is pressing on plus or minus and will adjust puck speed accordingly. **needs implementing of setting itself**
+        //if setting is puckspeed, it will check if mouse is pressing on plus or minus and will adjust puck speed accordingly.
         if(puckspeed)
         {
             if((Pongrave.mouseX < minusboxX1 + tickbox.x/2
@@ -164,13 +164,8 @@ public class Settingsmenu extends Pongrave
             && Pongrave.mouseY < minusboxY1 + tickbox.x/2
             && Pongrave.mouseY > minusboxY1 - tickbox.x/2)
             {
-                //placeholder code
                 Pongrave.delay(100);
-                // Pongrave.textAlign(CENTER);
-                // Pongrave.fill(255, 255, 255);
-                
-                // Pongrave.textSize(30);
-                // Pongrave.text(volumelevel, Pongrave.width/2, 50);
+                //adjusts volume downwards
                 Pongrave.volumelevel -= 1;
             }
             //this if statement just displays the volume level when the mouse hovers over the volume buttons.
@@ -184,6 +179,7 @@ public class Settingsmenu extends Pongrave
             && Pongrave.mouseY < plusboxY1 + tickbox.x/2 
             && Pongrave.mouseY > plusboxY1 - tickbox.x/2))
             {
+                //shows volume level
                 Pongrave.pushMatrix();
                 Pongrave.textAlign(CENTER);
                 Pongrave.fill(255, 255, 255);
@@ -199,7 +195,7 @@ public class Settingsmenu extends Pongrave
             && Pongrave.mouseY > plusboxY1 - tickbox.x/2)
             {
                 Pongrave.pushMatrix();
-                //placeholder code
+                //adjusts volume upwards
                 Pongrave.delay(100);
                 Pongrave.volumelevel += 1;
                 Pongrave.popMatrix();
@@ -254,6 +250,7 @@ public class Settingsmenu extends Pongrave
                 Pongrave.textAlign(CENTER);
                 Pongrave.fill(255, 255, 255);
                 Pongrave.textSize(30);
+                //will display the current state of the game, if it's muted or not.
                 if(muted)
                 {
                     Pongrave.text("Sound Muted", Pongrave.width/2, 100);
@@ -280,6 +277,7 @@ public class Settingsmenu extends Pongrave
             && Pongrave.mouseY < plusboxY1 + tickbox.x/2 
             && Pongrave.mouseY > plusboxY1 - tickbox.x/2))
             {
+                //show what the speed increase is set to when hovering mouse over it.
                 Pongrave.pushMatrix();
                 Pongrave.textAlign(CENTER);
                 Pongrave.fill(255, 255, 255);
@@ -303,6 +301,7 @@ public class Settingsmenu extends Pongrave
                 }
                 else
                 {
+                    //removes 0.01f from the speed increase when user clicks the minus button, making it slower 
                     Pongrave.speedincrease -= 0.01f;
                 }
             }
@@ -320,6 +319,7 @@ public class Settingsmenu extends Pongrave
                 }
                 else
                 {
+                    //adds 0.01f from the speed increase when user clicks the plus button, making it faster
                     Pongrave.speedincrease += 0.01f;
                 }
             }

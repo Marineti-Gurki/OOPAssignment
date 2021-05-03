@@ -20,6 +20,12 @@ public class Pongrave extends Visual
     Settingsmenu setting2;
     Settingsmenu setting3;
     Settingsmenu setting4;
+
+    SongSelect song1;
+    SongSelect song2;
+    SongSelect song3;
+    SongSelect song4;
+
     float gainvaluesong;
     float gainvaluesample;
     int volumelevel;
@@ -54,6 +60,12 @@ public class Pongrave extends Visual
         bttn3 = new Menu(this, -20, "Settings");
         bttn4 = new Menu(this, -120, "Exit");
         backbttn = new Menu(this, -120, "Back");
+
+        //song selection menu and variables in order:
+        song1 = new SongSelect(this, 180, "Rule The World", true);
+        song2 = new SongSelect(this, 80, "Dooms Gate", false);
+        song3 = new SongSelect(this, -20, "Hero Planet", false);
+        song4 = new SongSelect(this, -120, "Puck Speed", false);
         
         //settings menu button variables in order: Pongrave pongrave, int gap, String settingname, boolean box, boolean puckspeed, boolean vol, boolean mute, boolean speedgain
         setting1 = new Settingsmenu(this, 180, "Puck Speed", false, true, false, false, false);
@@ -109,18 +121,19 @@ public class Pongrave extends Visual
             check = 3;
         }
 
+        //if user clicks the fourth button while in the main menu, it will exit the program completely
         if(mousePressed == true && mouseX < bttn4.buttonloc.x + bttn4.buttonsize.x/2 && mouseX > bttn4.buttonloc.x - bttn4.buttonsize.x/2 && mouseY < bttn4.buttonloc.y + bttn4.buttonsize.y/2 && mouseY > bttn4.buttonloc.y - bttn4.buttonsize.y/2 && check == 0)
         {
             check = 4;
         }
 
+        //back button implemented that will bring the user back to the main menu if clicked
         if(mousePressed == true && mouseX < backbttn.backbttnX + backbttn.backbttnX/5 && mouseX > backbttn.backbttnX - backbttn.backbttnX/5 && mouseY < backbttn.backbttnY + backbttn.backbttnY/5 && mouseY > backbttn.backbttnY - backbttn.backbttnY/5 && (check == 2 || check == 3))
         {
-            println("test");
             check = 0;
         }
 
-
+        //pressing M brings you to the menu
         if(checkKey('M'))
         {
             p.playing = false;
@@ -146,6 +159,10 @@ public class Pongrave extends Visual
             case 2:
                 mn.render();
                 backbttn.backbutton();
+                song1.render();
+                song2.render();
+                song3.render();
+                song4.render();
                 getAudioPlayer().pause();
             break;
 
