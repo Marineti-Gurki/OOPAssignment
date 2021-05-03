@@ -86,8 +86,6 @@ public class Paddle extends Pongrave
     }
     void PlayPause()
     {
-        println(padspeed);
-        println(temppadspeed);
         if(playing == false)
         {
             temppadspeed = padspeed;

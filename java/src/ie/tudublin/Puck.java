@@ -116,7 +116,6 @@ public class Puck extends Pongrave
 
     void render() 
     {
-        println(speedx);
         Pongrave.calculateFrequencyBands();
         float[] bands = Pongrave.getSmoothedBands();
         for(int i = 0 ; i < bands.length; i ++)

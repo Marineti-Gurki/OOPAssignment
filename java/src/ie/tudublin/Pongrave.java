@@ -21,6 +21,8 @@ public class Pongrave extends Visual
     Settingsmenu setting3;
     Settingsmenu setting4;
 
+    int songnum;
+
     SongSelect song1;
     SongSelect song2;
     SongSelect song3;
@@ -48,10 +50,11 @@ public class Pongrave extends Visual
         setFrameSize(256);
         startMinim();
         loadAudio("RuleTheWorld.mp3");
-        volumelevel = -8;
-        getAudioPlayer().setGain(volumelevel); 
+        getAudioPlayer().setGain(-16); 
         lerpedBuffer = new float[width];
+        volumelevel = -8;
         check = 0;
+        songnum = 0;
 
         //menu button variables in order: Pongrave pongrave, int gap, String buttontext
         mn = new Menu(this, 0, "Menu");
@@ -62,10 +65,9 @@ public class Pongrave extends Visual
         backbttn = new Menu(this, -120, "Back");
 
         //song selection menu and variables in order:
-        song1 = new SongSelect(this, 180, "Rule The World", true);
-        song2 = new SongSelect(this, 80, "Dooms Gate", false);
-        song3 = new SongSelect(this, -20, "Hero Planet", false);
-        song4 = new SongSelect(this, -120, "Puck Speed", false);
+        song1 = new SongSelect(this, 180, "Rule The World");
+        song2 = new SongSelect(this, 80, "Dooms Gate");
+        song3 = new SongSelect(this, -20, "Hero Planet");
         
         //settings menu button variables in order: Pongrave pongrave, int gap, String settingname, boolean box, boolean puckspeed, boolean vol, boolean mute, boolean speedgain
         setting1 = new Settingsmenu(this, 180, "Puck Speed", false, true, false, false, false);
@@ -162,7 +164,6 @@ public class Pongrave extends Visual
                 song1.render();
                 song2.render();
                 song3.render();
-                song4.render();
                 getAudioPlayer().pause();
             break;
 
