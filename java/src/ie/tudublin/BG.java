@@ -46,7 +46,7 @@ public class BG extends Pongrave
             Pongrave.rectMode(CENTER);
             Pongrave.stroke(150+h, 50, 100);
             Pongrave.strokeWeight(2);
-            Pongrave.rect(Pongrave.width - Pongrave.width/4, halfH, size.x, size.y);
+            Pongrave.rect(Pongrave.width - Pongrave.width/4, halfH, size.x/1.5f, size.y);
             Pongrave.popMatrix();
             
             Pongrave.pushMatrix();
@@ -54,7 +54,7 @@ public class BG extends Pongrave
             Pongrave.rectMode(CENTER);
             Pongrave.stroke(150+h, 50, 100);
             Pongrave.strokeWeight(2);
-            Pongrave.rect(Pongrave.width/4, halfH, size.x, size.y);
+            Pongrave.rect(Pongrave.width/4, halfH, size.x/1.5f, size.y);
             Pongrave.popMatrix();
         }
     }

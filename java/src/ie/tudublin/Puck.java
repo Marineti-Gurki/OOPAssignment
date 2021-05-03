@@ -19,6 +19,8 @@ public class Puck extends Pongrave
         this.playing = playing;
         rot = random(TWO_PI);
         startspeed = 5;
+        Pongrave.loadSample("tabletennis.mp3");
+        Pongrave.loadSample("buzzer.mp3");
     }
 
     void paddledetectleft(Paddle p)
@@ -41,7 +43,7 @@ public class Puck extends Pongrave
                     speedx = 14;
                 }
                 speedy = startspeed * sin(angle);
-                Pongrave.getAs().setGain(-4);
+                Pongrave.getAs().setGain(Pongrave.gainvaluesample);
                 Pongrave.getAs().trigger();
             }
         }
@@ -67,7 +69,7 @@ public class Puck extends Pongrave
                     speedx = 15;
                 }
                 speedy = startspeed * sin(angle);
-                Pongrave.getAs().setGain(-4);
+                Pongrave.getAs().setGain(Pongrave.gainvaluesample);
                 Pongrave.getAs().trigger();
             }
         }
@@ -75,8 +77,6 @@ public class Puck extends Pongrave
 
     void PlayPause()
     {
-        println(speedy);
-        println(tempyspeed);
         if(playing == false)
         {
             
@@ -101,8 +101,6 @@ public class Puck extends Pongrave
 
     void render() 
     {
-        println(speedx);
-
         Pongrave.calculateFrequencyBands();
         float[] bands = Pongrave.getSmoothedBands();
         for(int i = 0 ; i < bands.length; i ++)
@@ -170,13 +168,13 @@ public class Puck extends Pongrave
         {
             Pongrave.loadSample("tabletennis.mp3");
             speedy *= -1;
-            Pongrave.getAs().setGain(-4);
+            Pongrave.getAs().setGain(Pongrave.gainvaluesample);
             Pongrave.getAs().trigger();
         }
         if(x > Pongrave.width)
         {
             Pongrave.loadSample("buzzer.mp3");
-            Pongrave.getAs().setGain(-8);
+            Pongrave.getAs().setGain(Pongrave.gainvaluesong);
             Pongrave.getAs().trigger();
             scr.scrL += 1;
             reset();
@@ -184,7 +182,7 @@ public class Puck extends Pongrave
         if(x < 0)
         {
             Pongrave.loadSample("buzzer.mp3");
-            Pongrave.getAs().setGain(-8);
+            Pongrave.getAs().setGain(Pongrave.gainvaluesong);
             Pongrave.getAs().trigger();
             scr.scrR += 1;
             reset();

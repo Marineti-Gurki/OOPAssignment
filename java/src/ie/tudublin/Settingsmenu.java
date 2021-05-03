@@ -11,14 +11,17 @@ public class Settingsmenu extends Pongrave
     PVector buttonsize;
     PVector buttonloc;
     String settingname;
+    int gap;
     boolean box;
     boolean puckspeed;
     boolean vol;
     boolean mute;
     boolean speedgain;
-    int gap;
-
-
+    int value;
+    
+    boolean muted;
+    
+    
     public Settingsmenu(Pongrave pongrave, int gap, String settingname, boolean box, boolean puckspeed, boolean vol, boolean mute, boolean speedgain) {
         Pongrave = pongrave;
         tickbox = new PVector(25, 25);
@@ -31,7 +34,8 @@ public class Settingsmenu extends Pongrave
         this.vol = vol;
         this.mute = mute;
         this.speedgain = speedgain;
-
+        muted = false;
+        
     }
 
     void render()
@@ -79,7 +83,6 @@ public class Settingsmenu extends Pongrave
             Pongrave.width/2 + Pongrave.mn.buttonsize.x/2.2f + (tickbox.x/2) - 35,               //lines X2
             Pongrave.height/2 - gap - (tickbox.x/2));                                            //lines Y1
 
-
             //This is the plus
             //vertical line
             Pongrave.line(Pongrave.width/2 + Pongrave.mn.buttonsize.x/2.2f, //vert lines X1
@@ -98,7 +101,6 @@ public class Settingsmenu extends Pongrave
         if(puckspeed)
         {
             Pongrave.pushMatrix();
-
             if(Pongrave.mousePressed == true 
             && Pongrave.mouseX < minusboxX1 + tickbox.x/2
             && Pongrave.mouseX > minusboxX1 - tickbox.x/2
@@ -122,7 +124,6 @@ public class Settingsmenu extends Pongrave
         if(vol)
         {
             Pongrave.pushMatrix();
-
             if(Pongrave.mousePressed == true 
             && Pongrave.mouseX < minusboxX1 + tickbox.x/2
             && Pongrave.mouseX > minusboxX1 - tickbox.x/2
@@ -130,8 +131,33 @@ public class Settingsmenu extends Pongrave
             && Pongrave.mouseY > minusboxY1 - tickbox.x/2)
             {
                 //placeholder code
-                println("Minus");
+                Pongrave.delay(100);
+                // Pongrave.textAlign(CENTER);
+                // Pongrave.fill(255, 255, 255);
+                
+                // Pongrave.textSize(30);
+                // Pongrave.text(volumelevel, Pongrave.width/2, 50);
+                Pongrave.volumelevel -= 1;
             }
+            //this if statement just displays the volume level when the mouse hovers over the volume buttons.
+            if((Pongrave.mouseX < minusboxX1 + tickbox.x/2
+            && Pongrave.mouseX > minusboxX1 - tickbox.x/2
+            && Pongrave.mouseY < minusboxY1 + tickbox.x/2
+            && Pongrave.mouseY > minusboxY1 - tickbox.x/2) 
+            || 
+            (Pongrave.mouseX < plusboxX1 + tickbox.x/2 
+            && Pongrave.mouseX > plusboxX1 - tickbox.x/2 
+            && Pongrave.mouseY < plusboxY1 + tickbox.x/2 
+            && Pongrave.mouseY > plusboxY1 - tickbox.x/2))
+            {
+                Pongrave.pushMatrix();
+                Pongrave.textAlign(CENTER);
+                Pongrave.fill(255, 255, 255);
+                Pongrave.textSize(30);
+                Pongrave.text("Volume:" + Pongrave.volumelevel, Pongrave.width/2, 100);
+                Pongrave.popMatrix();
+            }
+
             if(Pongrave.mousePressed == true 
             && Pongrave.mouseX < plusboxX1 + tickbox.x/2
             && Pongrave.mouseX > plusboxX1 - tickbox.x/2
@@ -139,23 +165,68 @@ public class Settingsmenu extends Pongrave
             && Pongrave.mouseY > plusboxY1 - tickbox.x/2)
             {
                 //placeholder code
-                println("Plus");
+                Pongrave.delay(100);
+                Pongrave.volumelevel += 1;
             }
             Pongrave.popMatrix();
         }
 
         
-        //if setting is mute, it will check if mouse is pressing on the specific location defined in the if statement. **needs implementing of setting itself**
+        //if setting is mute, it will check if mouse is pressing on the specific location defined in the if statement.
         if(mute)
         {
+            if(muted)
+            {
+                Pongrave.fill(255);
+                Pongrave.textSize(25);
+                Pongrave.textAlign(CENTER);
+                Pongrave.text("X", lineboxX2, lineboxY2 + tickbox.x/2.2f);
+                Pongrave.gainvaluesong = -99;
+                Pongrave.gainvaluesample = -99;
+            }
+            else
+            {
+                Pongrave.gainvaluesong = Pongrave.volumelevel-4;
+                Pongrave.gainvaluesample = Pongrave.volumelevel;
+            }
             Pongrave.pushMatrix();
-            if(Pongrave.mousePressed == true 
+            if(Pongrave.mousePressed == true
             && Pongrave.mouseX < lineboxX2 + tickbox.x/2
             && Pongrave.mouseX > lineboxX2 - tickbox.x/2
             && Pongrave.mouseY < lineboxY2 + tickbox.x/2
             && Pongrave.mouseY > lineboxY2 - tickbox.x/2)
             {
-                println("test2");
+                if(muted)
+                {
+                    
+                    Pongrave.delay(100); //delay is necessary to avoid mouseclick registering multiple times in one click.
+                    muted = false;
+                }
+                else
+                {
+                    Pongrave.delay(100); //for example, if this was a print statement without a delay, it would print the statement multiple times in one click.
+                    muted = true;
+                }
+            }
+
+            if(Pongrave.mouseX < lineboxX2 + tickbox.x/2
+            && Pongrave.mouseX > lineboxX2 - tickbox.x/2
+            && Pongrave.mouseY < lineboxY2 + tickbox.x/2
+            && Pongrave.mouseY > lineboxY2 - tickbox.x/2)
+            {
+                Pongrave.pushMatrix();
+                Pongrave.textAlign(CENTER);
+                Pongrave.fill(255, 255, 255);
+                Pongrave.textSize(30);
+                if(muted)
+                {
+                    Pongrave.text("Sound Muted", Pongrave.width/2, 100);
+                }
+                else
+                {
+                    Pongrave.text("Sound Unmuted", Pongrave.width/2, 100);
+                }
+                Pongrave.popMatrix();
             }
             Pongrave.popMatrix();
         }
@@ -163,14 +234,13 @@ public class Settingsmenu extends Pongrave
         if(speedgain)
         {
             Pongrave.pushMatrix();
-
             if(Pongrave.mousePressed == true 
             && Pongrave.mouseX < minusboxX1 + tickbox.x/2
             && Pongrave.mouseX > minusboxX1 - tickbox.x/2
             && Pongrave.mouseY < minusboxY1 + tickbox.x/2
             && Pongrave.mouseY > minusboxY1 - tickbox.x/2)
             {
-                //placeholder code
+                Pongrave.delay(100);
                 println("Minus");
             }
             if(Pongrave.mousePressed == true 
@@ -179,12 +249,11 @@ public class Settingsmenu extends Pongrave
             && Pongrave.mouseY < plusboxY1 + tickbox.x/2
             && Pongrave.mouseY > plusboxY1 - tickbox.x/2)
             {
-                //placeholder code
+                Pongrave.delay(100);
                 println("Plus");
             }
             Pongrave.popMatrix();
         }
-        
         // prints each settings text based on what was passed into settingname variable through the constructor, and location is decided by the gap variable.
         Pongrave.pushMatrix();
         Pongrave.textAlign(RIGHT);

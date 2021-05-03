@@ -20,6 +20,9 @@ public class Pongrave extends Visual
     Settingsmenu setting2;
     Settingsmenu setting3;
     Settingsmenu setting4;
+    float gainvaluesong;
+    float gainvaluesample;
+    int volumelevel;
 
     public int check;
     float halfW = width / 2;
@@ -38,6 +41,7 @@ public class Pongrave extends Visual
         setFrameSize(256);
         startMinim();
         loadAudio("RuleTheWorld.mp3");
+        volumelevel = -8;
         lerpedBuffer = new float[width];
         check = 0;
         mn = new Menu(this, 0, "Menu");
@@ -122,8 +126,8 @@ public class Pongrave extends Visual
                 bttn2.button();
                 bttn3.button();
                 bttn4.button();
-                getAudioPlayer().loop();
-                getAudioPlayer().setGain(-8); 
+                getAudioPlayer().loop();                    //loops song if it ends
+                getAudioPlayer().setGain(gainvaluesong);    //sets volume to desired volume or mutes
                 break;
 
             case 1:
