@@ -1,5 +1,6 @@
 package ie.tudublin;
 
+import processing.core.PImage;
 
 public class Pongrave extends Visual
 {
@@ -20,6 +21,8 @@ public class Pongrave extends Visual
     Settingsmenu setting2;
     Settingsmenu setting3;
     Settingsmenu setting4;
+
+    PImage menuimage;
 
     int songnum;
 
@@ -55,6 +58,8 @@ public class Pongrave extends Visual
         volumelevel = -8;
         check = 0;
         songnum = 0;
+
+        menuimage = loadImage("Pong.png");
 
         //menu button variables in order: Pongrave pongrave, int gap, String buttontext
         mn = new Menu(this, 0, "Menu");
@@ -102,7 +107,10 @@ public class Pongrave extends Visual
         }
 
         calculateFrequencyBands();
-        background(0);
+        pushMatrix();
+        colorMode(HSB);
+        background(117, 255, 255);
+        popMatrix();
 
         //if user clicks on first button in main menu, it will play pong
         if(mousePressed == true && mouseX < bttn1.buttonloc.x + bttn1.buttonsize.x/2 && mouseX > bttn1.buttonloc.x - bttn1.buttonsize.x/2 && mouseY < bttn1.buttonloc.y + bttn1.buttonsize.y/2 && mouseY > bttn1.buttonloc.y - bttn1.buttonsize.y/2 && check == 0)
@@ -145,6 +153,12 @@ public class Pongrave extends Visual
         switch(check)
         {
             case 0:
+                pushMatrix();
+                noSmooth();
+                imageMode(CENTER);
+                noTint();
+                image(menuimage, width/2, height/11, 200, 200);
+                popMatrix();
                 mn.render();
                 bttn1.button();
                 bttn2.button();
@@ -194,7 +208,6 @@ public class Pongrave extends Visual
     public void Pong()
     {
         bg.render();
-        
         bg.renderbars();
         p.render();
         p.update();

@@ -29,8 +29,8 @@ public class Menu extends Pongrave
     {
         Pongrave.pushMatrix();
         Pongrave.rectMode(CENTER);
-        Pongrave.colorMode(RGB);
-        Pongrave.fill(0);
+        Pongrave.colorMode(HSB);
+        Pongrave.fill(117, 255, 150, 100);
         Pongrave.stroke(255);
         Pongrave.strokeWeight(5);
         Pongrave.rect(Pongrave.width/2, Pongrave.height/2, menubox.x, menubox.y);
@@ -42,7 +42,7 @@ public class Menu extends Pongrave
         Pongrave.pushMatrix();
         Pongrave.rectMode(CENTER);
         Pongrave.colorMode(RGB);
-        Pongrave.fill(0);
+        Pongrave.fill(0, 0, 0, 150);
         Pongrave.stroke(255);
         Pongrave.strokeWeight(5);
         Pongrave.rect(buttonloc.x, buttonloc.y, buttonsize.x, buttonsize.y);
@@ -63,7 +63,7 @@ public class Menu extends Pongrave
     {
         Pongrave.pushMatrix();
         Pongrave.rectMode(CENTER);
-        Pongrave.fill(0);
+        Pongrave.fill(0, 0, 0, 150);
         Pongrave.stroke(255);
         Pongrave.rect(Pongrave.width/2 - menubox.x/1.3f, Pongrave.height/2 - buttonsize.y*2.65f, 130, 70);
         Pongrave.textAlign(CENTER);

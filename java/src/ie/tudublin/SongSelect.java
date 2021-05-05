@@ -45,13 +45,13 @@ public class SongSelect extends Pongrave{
             Pongrave.colorMode(HSB);
             if(Pongrave.songnum == 1)
             {
-                Pongrave.fill(144, 255, 255);
+                Pongrave.fill(0, 145, 255);
             }
             if(Pongrave.songnum != 1)
             {
-                Pongrave.fill(144, 0, 255);
+                Pongrave.fill(0, 0, 255);
             }
-            Pongrave.textSize(fixedsize/8);   
+            Pongrave.textSize(fixedsize/7);   
             Pongrave.text(songname, Pongrave.width/2, Pongrave.height/2 - gap);
             Pongrave.textSize(25);
             Pongrave.popMatrix();
@@ -70,15 +70,15 @@ public class SongSelect extends Pongrave{
             Pongrave.pushMatrix();
             if(Pongrave.songnum == 2)
             {
-                Pongrave.fill(144, 255, 255);
+                Pongrave.fill(0, 145, 255);
 
             }
             if(Pongrave.songnum != 2)
             {
-                Pongrave.fill(144, 0, 255);
+                Pongrave.fill(0, 0, 255);
             }
             Pongrave.colorMode(HSB);
-            Pongrave.textSize(fixedsize/8);   
+            Pongrave.textSize(fixedsize/5);   
             Pongrave.text(songname, Pongrave.width/2, Pongrave.height/2 - gap);
             Pongrave.textSize(25);
             Pongrave.popMatrix();
@@ -98,15 +98,15 @@ public class SongSelect extends Pongrave{
             Pongrave.pushMatrix();
             if(Pongrave.songnum == 3)
             {
-                Pongrave.fill(144, 255, 255);
+                Pongrave.fill(0, 145, 255);
 
             }
             if(Pongrave.songnum != 3)
             {
-                Pongrave.fill(144, 0, 255);
+                Pongrave.fill(0, 0, 255);
             }
             Pongrave.colorMode(HSB);
-            Pongrave.textSize(fixedsize/8);   
+            Pongrave.textSize(fixedsize/5);   
             Pongrave.text(songname, Pongrave.width/2, Pongrave.height/2 - gap);
             Pongrave.textSize(25);
             Pongrave.popMatrix();

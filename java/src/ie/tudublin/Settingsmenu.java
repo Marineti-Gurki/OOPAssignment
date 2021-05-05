@@ -59,7 +59,7 @@ public class Settingsmenu extends Pongrave
             Pongrave.pushMatrix();
             Pongrave.rectMode(CENTER);
             Pongrave.colorMode(RGB);
-            Pongrave.fill(0);
+            Pongrave.fill(0, 0, 0, 150);
             Pongrave.stroke(255);
             Pongrave.strokeWeight(5);
             Pongrave.rect(Pongrave.width/2 + Pongrave.mn.buttonsize.x/2.6f , Pongrave.height/2 - gap/1.3f, tickbox.x, tickbox.y);

@@ -1,5 +1,6 @@
 package ie.tudublin;
 
+import processing.core.PImage;
 import processing.core.PVector;
 
 public class BG extends Pongrave
@@ -7,20 +8,24 @@ public class BG extends Pongrave
     Pongrave Pongrave;
     float rot = 0;
     PVector size;
+    PImage rightcontrols;
+    PImage leftcontrols;
 
     public BG(Pongrave pongrave) {
         Pongrave = pongrave;
         size = new PVector(Pongrave.width/1.44f, Pongrave.width/1.44f);
         halfH = Pongrave.height/2;
         halfW = Pongrave.width/2;
+        rightcontrols = Pongrave.loadImage("updown.png");
+        leftcontrols = Pongrave.loadImage("WASD.png");
     }
     
     void render()
     {
         halfH = Pongrave.height/2;
         halfW = Pongrave.width/2;
-        size.x = Pongrave.width/1.44f;
-        size.y = Pongrave.width/1.44f;
+        // size.x = Pongrave.width/1.44f;
+        // size.y = Pongrave.width/1.44f;
 
         Pongrave.colorMode(HSB);
         rot += Pongrave.getAmplitude() / 5.0f; //rotation of sphere is determined by the amplitude of the song divided by 5, smaller number would make it rotate more aggresively, which for the sake of not distracting the players, is avoided.
@@ -51,6 +56,13 @@ public class BG extends Pongrave
             Pongrave.strokeWeight(2);
             Pongrave.rect(Pongrave.width - Pongrave.width/4, halfH, size.x/1.5f, size.y);
             Pongrave.popMatrix();
+
+            Pongrave.pushMatrix();
+            Pongrave.imageMode(CENTER);
+            Pongrave.colorMode(HSB);
+            Pongrave.tint(0+h/2, 41, 255, 150);
+            Pongrave.image(rightcontrols, Pongrave.width/2 + Pongrave.width/3, Pongrave.height/8);
+            Pongrave.popMatrix();
             
             //draws pong table on the other side (gaps are intentional)
             Pongrave.pushMatrix();
@@ -58,6 +70,14 @@ public class BG extends Pongrave
             Pongrave.stroke(150+h, 50, 100);
             Pongrave.strokeWeight(2);
             Pongrave.rect(Pongrave.width/4, halfH, size.x/1.5f, size.y);
+            Pongrave.popMatrix();
+
+            Pongrave.pushMatrix();
+            Pongrave.imageMode(CENTER);
+            Pongrave.colorMode(HSB);
+            Pongrave.tint(255, 50);
+            Pongrave.tint(0+h/2, 41, 255, 150);
+            Pongrave.image(leftcontrols, Pongrave.width/6, Pongrave.height/8);
             Pongrave.popMatrix();
         }
     }

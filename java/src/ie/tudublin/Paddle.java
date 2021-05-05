@@ -37,7 +37,7 @@ public class Paddle extends Pongrave
             Pongrave.translate(posx, posy);
             Pongrave.strokeWeight(bigb);
             Pongrave.stroke(255, 255, 255, 50);
-            Pongrave.fill(PApplet.map(b, 0, Pongrave.getBands().length*20, 0, 255), 255, 255);
+            Pongrave.fill(0 + PApplet.map(b, 0, Pongrave.getBands().length*20, 0, 255), 128, 255);
             Pongrave.box(x, y, h);
             Pongrave.popMatrix();
 
