@@ -188,15 +188,47 @@ public class Pongrave extends Visual
 
             case 2:
                 //renders the songs menu and it's buttons and functions
+                //displays the main menu and pong logo
+                pushMatrix();
+                imageMode(CENTER);
+                noTint();
+                image(menuimage, width/2, height/11, 200, 200);
+                textSize(20);
+                fill(0);
+                text("C19340106 - Matiss Priednieks", width/2, height - 20);
+                popMatrix();
+                
+                //big pong logo in the back, faded
+                pushMatrix();
+                imageMode(CENTER);
+                tint(255, 100);
+                image(menuimage, width/2, height/2, 1000, 1000);
+                popMatrix();
                 mn.render();
                 backbttn.backbutton();
                 song1.render();
                 song2.render();
                 song3.render();
-                // getAudioPlayer().pause();
             break;
 
             case 3:
+                //displays the main menu and pong logo
+                pushMatrix();
+                imageMode(CENTER);
+                noTint();
+                image(menuimage, width/2, height/11, 200, 200);
+                textSize(20);
+                fill(0);
+                text("C19340106 - Matiss Priednieks", width/2, height - 20);
+                println(width/2);
+                popMatrix();
+                
+                //big pong logo in the back, faded
+                pushMatrix();
+                imageMode(CENTER);
+                tint(255, 100);
+                image(menuimage, width/2, height/2, 1000, 1000);
+                popMatrix();
                 //renders the settings menu and it's buttons and functions
                 mn.render();
                 backbttn.backbutton();
@@ -204,7 +236,6 @@ public class Pongrave extends Visual
                 setting2.render();
                 setting3.render();
                 setting4.render();
-                // getAudioPlayer().pause();
             break;
 
             case 4:

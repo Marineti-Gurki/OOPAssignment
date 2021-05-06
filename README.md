@@ -221,4 +221,4 @@ The code is relatively well commented, and in much more detail than this section
 
 This is a youtube video:
 
-[![YouTube](http://img.youtube.com/vi/J2kHSSFA4NU/0.jpg)](https://www.youtube.com/watch?v=J2kHSSFA4NU)
+[![YouTube](http://img.youtube.com/vi/https://youtu.be/CmqxyN9DFHs/0.jpg)](https://youtu.be/CmqxyN9DFHs)
