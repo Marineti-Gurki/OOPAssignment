@@ -14,6 +14,7 @@ public class Score extends Pongrave
     
     void scoredisplayright()
     {
+        //draws the score on the right
         Pongrave.pushMatrix();
         Pongrave.fill(0);
         Pongrave.textSize(35);
@@ -23,6 +24,7 @@ public class Score extends Pongrave
     }
     void scoredisplayleft()
     {
+        //draws the score on the left
         Pongrave.pushMatrix();
         Pongrave.fill(0);
         Pongrave.textSize(35);
@@ -33,6 +35,7 @@ public class Score extends Pongrave
 
     void scorereset()
     {
+        //resets the score
         scrL = 0;
         scrR = 0;
     }

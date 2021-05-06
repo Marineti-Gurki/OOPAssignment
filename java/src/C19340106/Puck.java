@@ -141,14 +141,14 @@ public class Puck extends Pongrave
                 Pongrave.colorMode(RGB);
                 Pongrave.noStroke();
                 Pongrave.fill(0, 0, 0, 50);
-                Pongrave.rect(Pongrave.width/2, Pongrave.height/2, Pongrave.width, Pongrave.height);
+                Pongrave.rect(Pongrave.width/2, Pongrave.height/2, Pongrave.width, Pongrave.height);        //this is what gives the black transparent background, literally just a big rectangle with halved opacity
                 Pongrave.popMatrix();
 
                 Pongrave.pushMatrix();
                 Pongrave.colorMode(RGB);
                 Pongrave.noStroke();
                 Pongrave.fill(0);
-                Pongrave.triangle(Pongrave.width/2 - 80, Pongrave.height/2 - 100, Pongrave.width/2 - 80, Pongrave.height/2 + 100, Pongrave.width/2 + 100, Pongrave.height/2);
+                Pongrave.triangle(Pongrave.width/2 - 80, Pongrave.height/2 - 100, Pongrave.width/2 - 80, Pongrave.height/2 + 100, Pongrave.width/2 + 100, Pongrave.height/2);       //draws a triangle when paused
                 Pongrave.popMatrix();
             }
         }
@@ -182,25 +182,28 @@ public class Puck extends Pongrave
         //if the puck goes off screen, gives score to the player opposite of where it went off. plays a sound everytime someone scores.
         if(y - 12.5 < 0 || y + 12.5 > Pongrave.height)
         {
-            Pongrave.loadSample("tabletennis.mp3");
+            Pongrave.loadSample("tabletennis.mp3"); 
             speedy *= -1;
             Pongrave.getAs().setGain(Pongrave.gainvaluesample);
-            Pongrave.getAs().trigger();
+            Pongrave.getAs().trigger();     //plays tabletennis sound
         }
+
+        //plays buzzer when someone scores and updates score
         if(x > Pongrave.width)
         {
             Pongrave.loadSample("buzzer.mp3");
             Pongrave.getAs().setGain(Pongrave.gainvaluesong);
-            Pongrave.getAs().trigger();
-            scr.scrL += 1;
+            Pongrave.getAs().trigger();     //plays buzzer when someone scores
+            scr.scrL += 1;  //adds +1 to score on left side if the puck goes off the right side
             reset();
         }
+        //plays buzzer when someone scores and updates score
         if(x < 0)
         {
             Pongrave.loadSample("buzzer.mp3");
             Pongrave.getAs().setGain(Pongrave.gainvaluesong);
-            Pongrave.getAs().trigger();
-            scr.scrR += 1;
+            Pongrave.getAs().trigger(); 
+            scr.scrR += 1;  //adds +1 to score on right side if the puck goes off the left side
             reset();
         }
     }

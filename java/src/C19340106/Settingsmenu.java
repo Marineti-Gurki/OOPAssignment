@@ -35,7 +35,6 @@ public class Settingsmenu extends Pongrave
         this.mute = mute;
         this.speedgain = speedgain;
         muted = false;
-        
     }
 
     void render()

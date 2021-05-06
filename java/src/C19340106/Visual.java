@@ -35,7 +35,6 @@ public abstract class Visual extends PApplet
 
 		bands = new float[(int) log2(frameSize)];
   		smoothedBands = new float[bands.length];
-
 	}
 
 	float log2(float f) {

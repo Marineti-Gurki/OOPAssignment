@@ -153,11 +153,20 @@ public class Pongrave extends Visual
         switch(check)
         {
             case 0:
+                //displays the main menu and pong logo
                 pushMatrix();
                 noSmooth();
                 imageMode(CENTER);
                 noTint();
                 image(menuimage, width/2, height/11, 200, 200);
+                popMatrix();
+                
+                //big pong logo in the back, faded
+                pushMatrix();
+                noSmooth();
+                imageMode(CENTER);
+                tint(255, 100);
+                image(menuimage, width/2, height/2, 1000, 1000);
                 popMatrix();
                 mn.render();
                 bttn1.button();
@@ -173,6 +182,7 @@ public class Pongrave extends Visual
             break;
 
             case 2:
+                //renders the songs menu and it's buttons and functions
                 mn.render();
                 backbttn.backbutton();
                 song1.render();
@@ -182,6 +192,7 @@ public class Pongrave extends Visual
             break;
 
             case 3:
+                //renders the settings menu and it's buttons and functions
                 mn.render();
                 backbttn.backbutton();
                 setting1.render();
@@ -198,6 +209,7 @@ public class Pongrave extends Visual
         }
     }
 
+    //this is used for checking the keyboard input, essentially puts all keyboard keys into a large array and checks if any are pressed
     boolean checkKey(int k) {
         if (keys.length >= k) {
             return keys[k] || keys[Character.toUpperCase(k)];
@@ -207,6 +219,7 @@ public class Pongrave extends Visual
 
     public void Pong()
     {
+        //Renders the pong game, and it's functions are called.
         bg.render();
         bg.renderbars();
         p.render();
@@ -226,17 +239,14 @@ public class Pongrave extends Visual
         padleft.update();
     }
 
-    public void mousePressed() 
-    {
-
-    }
-
+    //this function checks if a key is pressed
     public void keyPressed() {
         keys[keyCode] = true;
 
         if (keyCode == ' ' && check == 1)
         {
-            p.PlayPause();
+            //if the key pressed is spacebar then the game pauses as long as the game is playing.
+            p.PlayPause();  //calls pucks playpause method to make sure that the puck is paused.
             if(getAudioPlayer().isPlaying())
             {
                 getAudioPlayer().pause();
@@ -258,6 +268,7 @@ public class Pongrave extends Visual
                 padright.playing = true;
             }
         }
+        //rewinds the song
         if (keyCode == ENTER)
         {
             getAudioPlayer().rewind();
@@ -265,6 +276,7 @@ public class Pongrave extends Visual
         }
     }
 
+    //stops the paddle if you let go of the control keys
     public void keyReleased() {
         keys[keyCode] = false;
         padright.control(0);
