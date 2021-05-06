@@ -100,9 +100,16 @@ The puck also bounces when hitting the top or bottom walls. Every bounce (includ
 
 #### Pongs Background
 The background in my game is simply a massive rotating sphere that the camera is inside (rotates based on music) and two rectangles to act as "tables". All colours react based on the music playing, and are pastel themed.
-On each side, there is a little image that I drew in photoshop that displays the controls for each player. Left side shows W and S, and right side shows the up and down arrows.
+On each side, there is a little image that I drew in photoshop that displays the controls for each player. 
+Left side shows W and S
 ![An image](images/WASD.png)
-![An image](images/updown.png)
+and right side shows the up and down arrows
+![An image](images/updown.png).
+
+![An image](images/Pong.png)
+- Pong image is in the background during the main menu, as well as being the logo there
+
+
 
 
 # What I am most proud of in the assignment
