@@ -1,4 +1,4 @@
-package C19340106.tudublin;
+package C19340106;
 
 import processing.core.PApplet;
 import ddf.minim.*;
