@@ -4,7 +4,7 @@
         "type": "java",
         "name": "Launch Java Program",
         "request": "launch",
-        "mainClass": "ie.tudublin.Main"
+        "mainClass": "C19340106.Main"
     }
     ]
 }

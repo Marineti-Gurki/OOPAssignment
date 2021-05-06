@@ -55,7 +55,7 @@ public class Pongrave extends Visual
         loadAudio("RuleTheWorld.mp3");
         getAudioPlayer().setGain(-16); 
         lerpedBuffer = new float[width];
-        volumelevel = -8;
+        volumelevel = 0;
         check = 0;
         songnum = 0;
 
@@ -115,9 +115,12 @@ public class Pongrave extends Visual
         //if user clicks on first button in main menu, it will play pong
         if(mousePressed == true && mouseX < bttn1.buttonloc.x + bttn1.buttonsize.x/2 && mouseX > bttn1.buttonloc.x - bttn1.buttonsize.x/2 && mouseY < bttn1.buttonloc.y + bttn1.buttonsize.y/2 && mouseY > bttn1.buttonloc.y - bttn1.buttonsize.y/2 && check == 0)
         {
+            getAudioPlayer().loop();
             check = 1;
             p.reset();
             scr.scorereset();
+            padleft.playing = false;    // makes it so if game is paused and then menu is opened
+            padright.playing = false;   // the paddles don't freeze.
         }
         //if user clicks the second button while in main menu, it will go to songs library
         if(mousePressed == true && mouseX < bttn2.buttonloc.x + bttn2.buttonsize.x/2 && mouseX > bttn2.buttonloc.x - bttn2.buttonsize.x/2 && mouseY < bttn2.buttonloc.y + bttn2.buttonsize.y/2 && mouseY > bttn2.buttonloc.y - bttn2.buttonsize.y/2 && check == 0)
@@ -148,6 +151,8 @@ public class Pongrave extends Visual
         {
             p.playing = false;
             check = 0;
+            getAudioPlayer().pause();
+            getAudioPlayer().rewind();
         }
 
         switch(check)
@@ -155,15 +160,16 @@ public class Pongrave extends Visual
             case 0:
                 //displays the main menu and pong logo
                 pushMatrix();
-                noSmooth();
                 imageMode(CENTER);
                 noTint();
                 image(menuimage, width/2, height/11, 200, 200);
+                textSize(20);
+                fill(0);
+                text("C19340106 - Matiss Priednieks", width/2, height - 20);
                 popMatrix();
                 
                 //big pong logo in the back, faded
                 pushMatrix();
-                noSmooth();
                 imageMode(CENTER);
                 tint(255, 100);
                 image(menuimage, width/2, height/2, 1000, 1000);
@@ -173,7 +179,6 @@ public class Pongrave extends Visual
                 bttn2.button();
                 bttn3.button();
                 bttn4.button();
-                getAudioPlayer().loop();                    //loops song if it ends
                 getAudioPlayer().setGain(gainvaluesong);    //sets volume to desired volume or mutes
                 break;
 
@@ -188,7 +193,7 @@ public class Pongrave extends Visual
                 song1.render();
                 song2.render();
                 song3.render();
-                getAudioPlayer().pause();
+                // getAudioPlayer().pause();
             break;
 
             case 3:
@@ -199,7 +204,7 @@ public class Pongrave extends Visual
                 setting2.render();
                 setting3.render();
                 setting4.render();
-                getAudioPlayer().pause();
+                // getAudioPlayer().pause();
             break;
 
             case 4:

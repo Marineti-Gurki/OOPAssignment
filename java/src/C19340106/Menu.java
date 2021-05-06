@@ -31,7 +31,7 @@ public class Menu extends Pongrave
         Pongrave.pushMatrix();
         Pongrave.rectMode(CENTER);
         Pongrave.colorMode(HSB);
-        Pongrave.fill(117, 255, 150, 100);
+        Pongrave.fill(117, 255, 150, 150);
         Pongrave.stroke(255);
         Pongrave.strokeWeight(5);
         Pongrave.rect(Pongrave.width/2, Pongrave.height/2, menubox.x, menubox.y);

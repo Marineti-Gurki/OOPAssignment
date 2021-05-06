@@ -180,7 +180,7 @@ public class Puck extends Pongrave
     void edgedetect(Score scr) 
     {
         //if the puck goes off screen, gives score to the player opposite of where it went off. plays a sound everytime someone scores.
-        if(y - 12.5 < 0 || y + 12.5 > Pongrave.height)
+        if(y - 12.5 <= 0 || y + 12.5 >= Pongrave.height)
         {
             Pongrave.loadSample("tabletennis.mp3"); 
             speedy *= -1;
