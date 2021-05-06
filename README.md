@@ -104,8 +104,12 @@ On each side, there is a little image that I drew in photoshop that displays the
 
 ![WASD](images/WASD.png)
 - Left side shows W and S
+
+
 ![UpDown](images/updown.png)
 - and right side shows the up and down arrows.
+
+
 ![Pong](images/Pong.png)
 - Pong image is in the background during the main menu, as well as being the logo there
 
