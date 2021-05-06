@@ -27,6 +27,7 @@ public class Menu extends Pongrave
 
     void render()
     {
+        //menu backblock, the box that holds the buttons essentially.
         Pongrave.pushMatrix();
         Pongrave.rectMode(CENTER);
         Pongrave.colorMode(HSB);
@@ -39,6 +40,7 @@ public class Menu extends Pongrave
 
     void button()
     {
+        //actual button drawing
         Pongrave.pushMatrix();
         Pongrave.rectMode(CENTER);
         Pongrave.colorMode(RGB);
@@ -48,12 +50,13 @@ public class Menu extends Pongrave
         Pongrave.rect(buttonloc.x, buttonloc.y, buttonsize.x, buttonsize.y);
         Pongrave.popMatrix();
 
+        //button text
         Pongrave.pushMatrix();
         Pongrave.textAlign(CENTER);
         Pongrave.textSize(50);
         float textsize = Pongrave.textWidth(buttontext);
-        float fixedsize = PApplet.map(textsize, 0, Pongrave.width, Pongrave.mn.buttonloc.x - Pongrave.mn.buttonsize.x/2, Pongrave.mn.buttonloc.x + Pongrave.mn.buttonsize.x/2);
-        Pongrave.textSize(fixedsize/10);
+        float fixedsize = PApplet.map(textsize, 0, Pongrave.width, Pongrave.mn.buttonloc.x - Pongrave.mn.buttonsize.x/2, Pongrave.mn.buttonloc.x + Pongrave.mn.buttonsize.x/2);     //this was in attempt to make the button text fit within the buttons no matter the size of the text
+        Pongrave.textSize(fixedsize/10); //text was still to big so here is a division to make it smaller and make it fit :)
         Pongrave.fill(255);
         Pongrave.text(buttontext, buttonloc.x, buttonloc.y + buttonsize.y/4);
         Pongrave.popMatrix();
@@ -61,6 +64,7 @@ public class Menu extends Pongrave
 
     void backbutton()
     {
+        //simple back button for the menu system.
         Pongrave.pushMatrix();
         Pongrave.rectMode(CENTER);
         Pongrave.fill(0, 0, 0, 150);

@@ -16,8 +16,8 @@ public class BG extends Pongrave
         size = new PVector(Pongrave.width/1.44f, Pongrave.width/1.44f);
         halfH = Pongrave.height/2;
         halfW = Pongrave.width/2;
-        rightcontrols = Pongrave.loadImage("updown.png");
-        leftcontrols = Pongrave.loadImage("WASD.png");
+        rightcontrols = Pongrave.loadImage("updown.png");   //loads updown image for right controls
+        leftcontrols = Pongrave.loadImage("WASD.png");      //loads wasd image for left controls
     }
     
     void render()
@@ -30,7 +30,7 @@ public class BG extends Pongrave
         Pongrave.colorMode(HSB);
         rot += Pongrave.getAmplitude() / 5.0f; //rotation of sphere is determined by the amplitude of the song divided by 5, smaller number would make it rotate more aggresively, which for the sake of not distracting the players, is avoided.
         Pongrave.calculateFrequencyBands();
-        float[] bands = Pongrave.getSmoothedBands(); //gets smoothed bands array from visual code.
+        float[] bands = Pongrave.getSmoothedBands(); //gets smoothed bands array from visual.java class.
 
         //for loop drawing most of the background objects, i.e a large sphere rotating in the far background, and a pong table like platform, both for aesthetic reasons and so that the rotating sphere is easier on the eyes.
         for(int i = 0 ; i < bands.length; i ++)
@@ -57,10 +57,12 @@ public class BG extends Pongrave
             Pongrave.rect(Pongrave.width - Pongrave.width/4, halfH, size.x/1.5f, size.y);
             Pongrave.popMatrix();
 
+            //displays image of controls on the right side
             Pongrave.pushMatrix();
             Pongrave.imageMode(CENTER);
             Pongrave.colorMode(HSB);
-            Pongrave.tint(0+h/2, 41, 255, 150);
+            Pongrave.tint(255, 50);
+            Pongrave.tint(0+h/2, 41, 255, 100);     //wanted a slight tint change based on the music and have the opacity be slightly reduced so that it doesn't completely pop and distract the player.
             Pongrave.image(rightcontrols, Pongrave.width/2 + Pongrave.width/3, Pongrave.height/8);
             Pongrave.popMatrix();
             
@@ -72,11 +74,12 @@ public class BG extends Pongrave
             Pongrave.rect(Pongrave.width/4, halfH, size.x/1.5f, size.y);
             Pongrave.popMatrix();
 
+            //displays image of controls on the left side
             Pongrave.pushMatrix();
             Pongrave.imageMode(CENTER);
             Pongrave.colorMode(HSB);
-            Pongrave.tint(255, 50);
-            Pongrave.tint(0+h/2, 41, 255, 150);
+            Pongrave.tint(255, 50);     //wanted a slight tint change based on the music and have the opacity be slightly reduced so that it doesn't completely pop and distract the player.
+            Pongrave.tint(0+h/2, 41, 255, 100);
             Pongrave.image(leftcontrols, Pongrave.width/6, Pongrave.height/8);
             Pongrave.popMatrix();
         }

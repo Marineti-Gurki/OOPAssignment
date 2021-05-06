@@ -26,6 +26,7 @@ public class Paddle extends Pongrave
 
     void render()
     {
+        //grabs band values from the song and uses them to draw a paddle. The colour of the paddle changes slightly based on the song
         Pongrave.calculateFrequencyBands();
         float[] bands = Pongrave.getSmoothedBands();
         for(int i = 0 ; i < bands.length; i ++)
@@ -37,20 +38,20 @@ public class Paddle extends Pongrave
             Pongrave.translate(posx, posy);
             Pongrave.strokeWeight(bigb);
             Pongrave.stroke(255, 255, 255, 50);
-            Pongrave.fill(0 + PApplet.map(b, 0, Pongrave.getBands().length*20, 0, 255), 128, 255);
+            Pongrave.fill(0 + PApplet.map(b, 0, Pongrave.getBands().length*20, 0, 255), 200, 255); //changes the fill of the paddle to be according to song.
             Pongrave.box(x, y, h);
             Pongrave.popMatrix();
-
         }
     }
 
     void leftInput()
     {
+        //controls for Left player
         if(playing == false)
         {
             if(Pongrave.checkKey('W'))
             {
-                control(10);
+                control(10);        //the 10 is then sent to control, and puts it into ymovement.
             }
             if(Pongrave.checkKey('S'))
             {
@@ -60,11 +61,12 @@ public class Paddle extends Pongrave
     }
     void rightInput()
     {
+        //controls for Right player
         if(playing == false)
         {
             if(Pongrave.checkKey(PApplet.UP))
             {
-                control(10);
+                control(10);        //the 10 is then sent to control, and puts it into ymovement.
             }
             if(Pongrave.checkKey(PApplet.DOWN))
             {
@@ -75,25 +77,26 @@ public class Paddle extends Pongrave
 
     void control(float padspeed)
     {
-        ymovement = padspeed;
+        ymovement = padspeed; //this is what controls the padspeed, changes ymovement to be the padspeed.
     }
 
 
     void update()
     {
-        posy = posy - ymovement;
-        posy = constrain(posy, y/2, Pongrave.height - y/2);
+        posy = posy - ymovement;    //moves the y position of the pads by ymovement.
+        posy = constrain(posy, y/2, Pongrave.height - y/2); //stops the paddle from going off screen.
     }
     void PlayPause()
     {
+        //this is for when the game is paused, otherwise you can move the paddles while paused, which is probably not preferable lol.
         if(playing == false)
         {
-            temppadspeed = padspeed;
+            temppadspeed = padspeed;    //if not playing then paddle is not free to move
             padspeed = 0;
         }
         if(playing == true)
         {
-            padspeed = temppadspeed;
+            padspeed = temppadspeed;    //if playing then paddle is free to move
         }
         
     }
