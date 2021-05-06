@@ -101,16 +101,109 @@ The puck also bounces when hitting the top or bottom walls. Every bounce (includ
 #### Pongs Background
 The background in my game is simply a massive rotating sphere that the camera is inside (rotates based on music) and two rectangles to act as "tables". All colours react based on the music playing, and are pastel themed.
 On each side, there is a little image that I drew in photoshop that displays the controls for each player. 
-- Left side shows W and S
-![WASD](images/WASD.png)
-- and right side shows the up and down arrows.
-![UpDown](images/updown.png)
 
+![WASD](images/WASD.png)
+- Left side shows W and S
+![UpDown](images/updown.png)
+- and right side shows the up and down arrows.
 ![Pong](images/Pong.png)
 - Pong image is in the background during the main menu, as well as being the logo there
 
+### Song Menu
+The song menu works by checking a variable, and changing this variable based on if a user has clicked on one of the tracks. 
+It uses an if statement that checks the buttons name, and then if the button is pressed it changes the song number to that buttons allocated number.
+```Java
+        if(songname == "Rule The World")
+        {
+			Pongrave.colorMode(HSB);
+            if(Pongrave.songnum == 1)
+            {
+                Pongrave.fill(0, 145, 255);
+            }
+            if(Pongrave.songnum != 1)
+            {
+                Pongrave.fill(0, 0, 255);
+            }
+            if(Pongrave.mousePressed == true
+            && Pongrave.mouseX < songbuttonx + hitbox.x/2
+            && Pongrave.mouseX > songbuttonx - hitbox.x/2
+            && Pongrave.mouseY < songbuttony + hitbox.y/2
+            && Pongrave.mouseY > songbuttony - hitbox.y/2 && Pongrave.check == 2)
+            {
+                Pongrave.songnum = 1;
+                Pongrave.loadAudio("RuleTheWorld.mp3");     //if it the song name is clicked in the menu it will load this song.
+            }
+        }
+```
+It does this for each of the songs available, and when the current song is selected, the text of that song will turn blue.
 
+### Settings menu
+The way the settings menu works is relatively simple, inside of the Pongrave class, multiple settings are created and each are named accordingly. It will then check if the setting is meant to be a checkbox or an iterable setting.
+If the setting is a checkbox style setting, it will draw a box, otherwise it will draw a - and a +
+When those are pressed, it changes variables associated with that setting in their corresponding classes.
 
+Here's an example of the startspeed - buttons function. It reduces the startspeed by 1 every time it is pressed.
+```Java
+            Pongrave.pushMatrix();
+            if(Pongrave.mousePressed == true 
+            && Pongrave.mouseX < minusboxX1 + tickbox.x/2
+            && Pongrave.mouseX > minusboxX1 - tickbox.x/2
+            && Pongrave.mouseY < minusboxY1 + tickbox.x/2
+            && Pongrave.mouseY > minusboxY1 - tickbox.x/2)
+            {
+                Pongrave.delay(100);
+                // makes it so startspeed has a minimum value of 1.
+                if(Pongrave.startspeed <= 1)
+                {
+                    Pongrave.startspeed = 1;
+                }
+                else
+                {
+                    Pongrave.startspeed -= 1;
+                }
+            }
+```
+This is the check box for the mute setting, when pressed it will get marked with an X to indicate that it is active.
+```Java
+if(muted)
+            {
+                Pongrave.fill(255);
+                Pongrave.textSize(25);
+                Pongrave.textAlign(CENTER);
+                Pongrave.text("X", lineboxX2, lineboxY2 + tickbox.x/2.2f);
+                Pongrave.gainvaluesong = -99;
+                Pongrave.gainvaluesample = -99;
+            }
+            else
+            {
+                Pongrave.gainvaluesong = Pongrave.volumelevel-4;
+                Pongrave.gainvaluesample = Pongrave.volumelevel;
+            }
+            Pongrave.pushMatrix();
+            if(Pongrave.mousePressed == true
+            && Pongrave.mouseX < lineboxX2 + tickbox.x/2
+            && Pongrave.mouseX > lineboxX2 - tickbox.x/2
+            && Pongrave.mouseY < lineboxY2 + tickbox.x/2
+            && Pongrave.mouseY > lineboxY2 - tickbox.x/2)
+            {
+                if(muted)
+                {
+                    
+                    Pongrave.delay(100); //delay is necessary to avoid mouseclick registering multiple times in one click.
+                    muted = false;
+                }
+                else
+                {
+                    Pongrave.delay(100); //for example, if this was a print statement without a delay, it would print the statement multiple times in one click.
+                    muted = true;
+                }
+            }
+```
+
+Each setting also shows it's current value when you hover over it. This is nice as otherwise you wouldn't know what your volume is set to etc. while also making the screen less cluttered, as it only appears when hovering over the setting.
+![Pong](images/settingpopup.png)
+
+The code is relatively well commented, and in much more detail than this section as well, however, hopefully this was a good overview of what this program can do and how it does it. The exit function is very simple and simply exits the program when it is pressed.
 
 # What I am most proud of in the assignment
 
