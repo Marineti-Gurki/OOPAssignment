@@ -219,6 +219,4 @@ The code is relatively well commented, and in much more detail than this section
 - I also want to mention the all around aesthetic of the game, looking very retro/80's and I am a big fan of this. It looks fantastic, and nicely reacts to music.
 
 
-This is a youtube video:
-
-[![YouTube](http://img.youtube.com/vi/https://youtu.be/CmqxyN9DFHs/0.jpg)](https://youtu.be/CmqxyN9DFHs)
+[![Video of the Game](http://img.youtube.com/vi/CmqxyN9DFHs/0.jpg)](https://youtu.be/CmqxyN9DFHs)
