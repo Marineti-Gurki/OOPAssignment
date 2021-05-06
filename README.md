@@ -205,11 +205,20 @@ if(muted)
 ```
 
 Each setting also shows it's current value when you hover over it. This is nice as otherwise you wouldn't know what your volume is set to etc. while also making the screen less cluttered, as it only appears when hovering over the setting.
+
 ![Pong](images/settingpopup.png)
 
 The code is relatively well commented, and in much more detail than this section as well, however, hopefully this was a good overview of what this program can do and how it does it. The exit function is very simple and simply exits the program when it is pressed.
 
 # What I am most proud of in the assignment
+-I am most proud of the settings menu, as I had generally no idea how I would implement these settings in a generally polished way and had to go through quite a lot of trial and error, however I am very happy with the current state of it.
+-I got stuck on a small issue with the buttons being activated multiple times in one click, but this was simply solved by the delay(int); function (int being an amount of miliseconds) which stopped the mousePressed() from reading every milisecond in.
+-I was also very proud of the actual pong game itself, as this took a lot of bugfixing and polishing to look right, and even still has some bugs that I cannot figure out, but luckily they are very rare. I also tried making the game work in fullscreen, but there are certain areas where I was unable to get PVectors to act nicely with this, and thus the game only plays correctly when it's not in fullscreen. I'm quite proud that the game is very smooth to play and can be paused/unpaused at any point and it will resume before the pause (puck direction or speed isn't affected by the pause) and that you can exit the game at any time by pressing M.
+-Music selection was a tough cookie to solve, and I feel like I wrote a really effective bit of code for it, which makes me very happy with the end product. It does its job well.
+-I'm very proud of the buttons working as intended and that they integrate core OOP fundamentals and practices, same as with all of my other classes. I very much so enjoyed the process of creating this game, although not the most original game in the world, it was essentially the beginning and I would like not have the great hobbies I have now without it.
+-I also want to mention the all around aesthetic of the game, looking very retro/80's and I am a big fan of this. It looks fantastic, and nicely reacts to music.
+
+
 
 # Markdown Tutorial
 
