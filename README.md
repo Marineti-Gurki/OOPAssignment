@@ -219,6 +219,14 @@ The code is relatively well commented, and in much more detail than this section
 - I also want to mention the all around aesthetic of the game, looking very retro/80's and I am a big fan of this. It looks fantastic, and nicely reacts to music.
 
 
-This is a youtube video:
+# Assignment Video
 
-[![YouTube](http://img.youtube.com/vi/https://youtu.be/CmqxyN9DFHs/0.jpg)](https://youtu.be/CmqxyN9DFHs)
+[![YouTube](http://img.youtube.com/vi/CmqxyN9DFHs/0.jpg)](https://youtu.be/CmqxyN9DFHs)
+
+
+# References
+([The Coding Train Pong](https://www.youtube.com/watch?v=IIrC5Qcb2G4))
+- This helped me get an approximate idea of where to go with pong, however, since I used 3d objects, a lot of what was done in this video didn't apply and had to be entirely changed.
+- Largely used this as a reference when bug fixing, rather than basing my code off of it.
+([Animated Sprites](https://youtu.be/3noMeuufLZY))
+- I believe this video inspired me to use the load image function, however I can't fully remember, but I do remember intending to try create an animated sprite and make a game around that, which I ended up not doing.
