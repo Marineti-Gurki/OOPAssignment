@@ -38,7 +38,7 @@ public class BG extends Pongrave
             float h = bands[i];
             Pongrave.pushMatrix();
             Pongrave.colorMode(HSB);
-            h = (h + 10f) % 255;
+            h = (h * 5f) % 255;
             Pongrave.fill(h, 50, 255, 100);
             Pongrave.stroke(150+h, 50, 100);
             Pongrave.strokeWeight(2);
