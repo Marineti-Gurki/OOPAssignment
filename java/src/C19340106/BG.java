@@ -1,3 +1,14 @@
+/**
+ * @Author: Matiss Priednieks
+ * @Date:   2021-05-06T15:12:09+01:00
+ * @Email:  C19340106@mytudublin.ie
+ * @Filename: BG.java
+ * @Last modified by:   Matiss Priednieks
+ * @Last modified time: 2021-05-07T16:30:09+01:00
+ */
+
+
+
 package C19340106;
 
 import processing.core.PImage;
@@ -19,7 +30,7 @@ public class BG extends Pongrave
         rightcontrols = Pongrave.loadImage("updown.png");   //loads updown image for right controls
         leftcontrols = Pongrave.loadImage("WASD.png");      //loads wasd image for left controls
     }
-    
+
     void render()
     {
         halfH = Pongrave.height/2;
@@ -44,10 +55,10 @@ public class BG extends Pongrave
             Pongrave.strokeWeight(2);
             Pongrave.translate(halfW, halfH);
             Pongrave.rotateY(rot/4);
-            float spheresize = Pongrave.width/2 + Pongrave.height/2; 
+            float spheresize = Pongrave.width/2 + Pongrave.height/2;
             Pongrave.sphere(spheresize); //draws a sphere according to screen size, rotates and changes colours according to music.
             Pongrave.popMatrix();
-            
+
             //draws pong table on one side (gaps are intentional)
             Pongrave.pushMatrix();
             Pongrave.hint(DISABLE_OPTIMIZED_STROKE);    //added to fix issues with strokes showing through when they're not meant to. Causes some glitchy-ness on rare occasions.
@@ -65,7 +76,7 @@ public class BG extends Pongrave
             Pongrave.tint(0+h/2, 41, 255, 100);     //wanted a slight tint change based on the music and have the opacity be slightly reduced so that it doesn't completely pop and distract the player.
             Pongrave.image(rightcontrols, Pongrave.width/2 + Pongrave.width/3, Pongrave.height/8);
             Pongrave.popMatrix();
-            
+
             //draws pong table on the other side (gaps are intentional)
             Pongrave.pushMatrix();
             Pongrave.rectMode(CENTER);
@@ -97,8 +108,8 @@ public class BG extends Pongrave
             float gap = Pongrave.width / (float) Pongrave.getBands().length;
             Pongrave.stroke(0, 125, 0);
             Pongrave.fill(h, 125, 255);
-            Pongrave.rect(0, i * gap, -Pongrave.getSmoothedBands()[i] * 1f, gap); 
-            Pongrave.rect(Pongrave.width, i * gap, -Pongrave.getSmoothedBands()[i] * 1f, gap); 
+            Pongrave.rect(0, i * gap, -Pongrave.getSmoothedBands()[i] * 1f, gap);
+            Pongrave.rect(Pongrave.width, i * gap, -Pongrave.getSmoothedBands()[i] * 1f, gap);
             Pongrave.popMatrix();
 
         }

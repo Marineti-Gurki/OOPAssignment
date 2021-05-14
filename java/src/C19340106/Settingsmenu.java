@@ -208,14 +208,14 @@ public class Settingsmenu extends Pongrave
         {
             if(muted)
             {
-                Pongrave.popMatrix();
+                // Pongrave.popMatrix();
                 Pongrave.fill(255);
                 Pongrave.textSize(25);
                 Pongrave.textAlign(CENTER);
                 Pongrave.text("X", lineboxX2, lineboxY2 + tickbox.x/2.2f);
                 Pongrave.gainvaluesong = -99;
                 Pongrave.gainvaluesample = -99;
-                Pongrave.popMatrix();
+                // Pongrave.pushMatrix();
             }
             else
             {
